@@ -406,6 +406,8 @@ body {
     align-items: center;
     justify-content: center;
     animation: float 6s ease-in-out infinite;
+    overflow: hidden;
+    position: relative;
 }
 
 @keyframes float {
@@ -414,6 +416,62 @@ body {
     }
     50% {
         transform: translate(-50%, -50%) translateY(-20px);
+    }
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    filter: brightness(0.9) contrast(1.1) saturate(1.2);
+    transition: all 0.5s var(--ease-smooth);
+}
+
+.profile-circle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, transparent 30%, rgba(255, 107, 0, 0.15) 100%);
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s var(--ease-smooth);
+}
+
+.profile-circle:hover::after {
+    opacity: 0;
+}
+
+.profile-circle:hover .profile-image {
+    filter: brightness(1) contrast(1.2) saturate(1.5);
+    transform: scale(1.05);
+}
+
+.profile-border {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    background: var(--gradient-orange);
+    z-index: 0;
+    animation: rotateBorder 10s linear infinite;
+}
+
+@keyframes rotateBorder {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
 
