@@ -48,6 +48,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    padding-left: 120px; /* Espaço para sidebar */
 }
 
 /* ==================== CAMADAS DE PARALAXE ==================== */
@@ -75,7 +76,7 @@ body {
 .nav-minimal {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 120px; /* Deixa espaço para sidebar */
     right: 0;
     padding: 2rem 4rem;
     display: flex;
@@ -1248,6 +1249,14 @@ body {
 
 /* ==================== RESPONSIVIDADE SIDEBAR ==================== */
 @media (max-width: 1024px) {
+    body {
+        padding-left: 90px;
+    }
+
+    .nav-minimal {
+        left: 90px;
+    }
+
     .social-sidebar {
         left: 1rem;
         gap: 1rem;
@@ -1265,6 +1274,14 @@ body {
 }
 
 @media (max-width: 768px) {
+    body {
+        padding-left: 0;
+    }
+
+    .nav-minimal {
+        left: 0;
+    }
+
     .social-sidebar {
         display: none;
     }
