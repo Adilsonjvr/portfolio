@@ -189,7 +189,7 @@ body {
 }
 
 .manifesto-title {
-    font-size: clamp(4rem, 15vw, 12rem);
+    font-size: clamp(3rem, 10vw, 7rem);
     font-weight: 900;
     line-height: 0.9;
     letter-spacing: -0.05em;
@@ -1094,4 +1094,194 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--orange-light);
+}
+
+/* ==================== MANIFESTO INTRO ==================== */
+.manifesto-intro {
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.8s forwards;
+}
+
+.intro-name {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    background: var(--gradient-orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.intro-role {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--gray);
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+}
+
+.intro-location {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--gray-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.location-icon {
+    font-size: 1.2em;
+}
+
+/* ==================== SOCIAL SIDEBAR ==================== */
+.social-sidebar {
+    position: fixed;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sidebar-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--black-light);
+    border: 2px solid rgba(255, 140, 0, 0.3);
+    border-radius: 12px;
+    color: var(--orange);
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s var(--ease-smooth);
+    cursor: pointer;
+}
+
+.sidebar-icon svg {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s var(--ease-smooth);
+    position: relative;
+    z-index: 2;
+}
+
+.sidebar-label {
+    position: absolute;
+    left: 70px;
+    background: var(--black-light);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s var(--ease-smooth);
+    pointer-events: none;
+    border: 1px solid rgba(255, 140, 0, 0.3);
+    box-shadow: var(--shadow-orange);
+}
+
+.sidebar-label::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 6px 6px 0;
+    border-color: transparent rgba(255, 140, 0, 0.3) transparent transparent;
+}
+
+.sidebar-icon:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-orange);
+}
+
+.sidebar-icon:hover svg {
+    color: var(--black);
+}
+
+.sidebar-icon:hover .sidebar-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* ==================== PROFILE IMAGE FIX ==================== */
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    filter: brightness(0.9) contrast(1.1) saturate(1.2);
+    transition: all 0.5s var(--ease-smooth);
+}
+
+.profile-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.profile-fallback .profile-svg {
+    width: 150px;
+    height: 150px;
+}
+
+/* ==================== RESPONSIVIDADE SIDEBAR ==================== */
+@media (max-width: 1024px) {
+    .social-sidebar {
+        left: 1rem;
+        gap: 1rem;
+    }
+
+    .sidebar-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .sidebar-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-sidebar {
+        display: none;
+    }
+
+    .manifesto-intro {
+        margin: 1.5rem 0;
+    }
+
+    .intro-name {
+        font-size: 2rem;
+    }
+
+    .intro-role {
+        font-size: 1.2rem;
+    }
+
+    .intro-location {
+        font-size: 1rem;
+    }
 }
