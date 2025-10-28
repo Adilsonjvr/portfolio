@@ -1016,9 +1016,11 @@ body {
     z-index: 0;
 }
 
-.tech-item svg {
+.tech-item svg,
+.tech-item i {
     width: 60px;
     height: 60px;
+    font-size: 60px;
     transition: all 0.4s var(--ease-smooth);
     position: relative;
     z-index: 1;
@@ -1047,7 +1049,8 @@ body {
     opacity: 0.1;
 }
 
-.tech-item:hover svg {
+.tech-item:hover svg,
+.tech-item:hover i {
     transform: scale(1.15) rotateY(360deg);
     filter: drop-shadow(0 8px 20px rgba(255, 107, 0, 0.4));
 }
@@ -1209,9 +1212,11 @@ body {
         padding: 1.5rem 1rem;
     }
 
-    .tech-item svg {
+    .tech-item svg,
+    .tech-item i {
         width: 45px;
         height: 45px;
+        font-size: 45px;
     }
 
     .tech-item span {
