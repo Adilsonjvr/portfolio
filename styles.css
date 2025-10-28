@@ -1017,7 +1017,8 @@ body {
 }
 
 .tech-item svg,
-.tech-item i {
+.tech-item i,
+.tech-item img {
     width: 60px;
     height: 60px;
     font-size: 60px;
@@ -1050,7 +1051,8 @@ body {
 }
 
 .tech-item:hover svg,
-.tech-item:hover i {
+.tech-item:hover i,
+.tech-item:hover img {
     transform: scale(1.15) rotateY(360deg);
     filter: drop-shadow(0 8px 20px rgba(255, 107, 0, 0.4));
 }
@@ -1213,7 +1215,8 @@ body {
     }
 
     .tech-item svg,
-    .tech-item i {
+    .tech-item i,
+    .tech-item img {
         width: 45px;
         height: 45px;
         font-size: 45px;
