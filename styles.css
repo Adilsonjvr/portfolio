@@ -289,6 +289,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    z-index: 20;
 }
 
 .scroll-hint span {
@@ -1186,6 +1187,10 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding-bottom: 70px; /* Reduzir padding no mobile pequeno */
+    }
+
     .nav-minimal {
         padding: 1rem;
     }
@@ -1194,12 +1199,30 @@ body {
         font-size: 2.5rem;
     }
 
+    .home-subtitle {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
+
     .about-title {
         font-size: 2rem;
     }
 
     .project-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+    }
+
+    .project-preview {
+        height: 200px; /* Reduzir altura do iframe no mobile */
+    }
+
+    .project-tech span {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
     }
 
     .contact-title {
@@ -1225,6 +1248,33 @@ body {
 
     .tech-item span {
         font-size: 0.85rem;
+    }
+
+    .social-sidebar {
+        padding: 0.75rem 0;
+    }
+
+    .sidebar-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .sidebar-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .section-number {
+        font-size: 4rem;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
     }
 }
 
@@ -1430,14 +1480,43 @@ body {
 @media (max-width: 768px) {
     body {
         padding-left: 0;
+        padding-bottom: 80px; /* Espaço para bottom bar */
     }
 
     .nav-minimal {
         left: 0;
     }
 
+    /* Transformar sidebar em bottom bar no mobile */
     .social-sidebar {
-        display: none;
+        left: 0;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-around;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255, 140, 0, 0.3);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+        gap: 0;
+        z-index: 1000;
+    }
+
+    .sidebar-icon {
+        width: 50px;
+        height: 50px;
+        margin: 0;
+    }
+
+    .sidebar-icon:hover {
+        transform: translateY(-5px);
+    }
+
+    .sidebar-label {
+        display: none; /* Esconder labels no mobile */
     }
 
     .home-intro {
