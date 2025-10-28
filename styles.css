@@ -679,6 +679,39 @@ body {
     transition: all 0.5s var(--ease-smooth);
 }
 
+/* Prévia do projeto com iframe */
+.project-preview {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    height: 85%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--black);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s var(--ease-smooth);
+    z-index: 2;
+}
+
+.project-preview iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.project-item:hover .project-preview iframe {
+    opacity: 1;
+}
+
+.project-item:hover .project-preview {
+    box-shadow: 0 15px 60px rgba(255, 140, 0, 0.4);
+}
+
 .project-item:hover .project-bg {
     border-color: var(--orange);
     box-shadow: var(--shadow-orange-lg);
