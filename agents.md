@@ -125,9 +125,22 @@ portfolio/
   - Auto-reconexão WebSocket
 - **Posição**: Projeto #2
 
-### 3. App Mobile Colaborativo (Placeholder)
-- **Status**: Placeholder para projeto futuro
-- **Stack Planejada**: React Native, Firebase, WebSocket, Redux
+### 3. Landing Innova - B2B Premium
+- **URL**: https://landing-innova-mu.vercel.app
+- **GitHub**: https://github.com/Adilsonjvr/landing-innova
+- **Stack**: HTML5, CSS3, JavaScript (vanilla), AOS
+- **Features**:
+  - Landing page B2B para produtos estéticos profissionais
+  - Catálogo premium (Toxina Botulínica, Ácido Hialurónico, Bioestimuladores)
+  - Programas de formação certificados internacionalmente
+  - Sistema de orçamento com resposta em 24h
+  - Design sofisticado e minimalista (setor médico-estético)
+  - Animações sutis com AOS (Animate On Scroll)
+  - Counters animados, carousel de testemunhos
+  - SEO otimizado com Schema.org structured data
+  - Performance: lazy loading, CSS crítico inline
+  - Gestão logística: entregas 24-48h em Portugal
+  - 15 anos no mercado, 5K profissionais, 2000+ formados
 - **Posição**: Projeto #3
 
 ---
@@ -189,6 +202,12 @@ portfolio/
 **Solução**: Transformar sidebar lateral em bottom bar fixa com layout horizontal.
 **Commit**: `6757353`
 
+### 5. Landing Innova Iframe Bloqueado
+**Problema**: Iframe mostrava "conexão recusada" devido ao header X-Frame-Options: DENY.
+**Solução Inicial**: Removido iframe temporariamente.
+**Solução Final**: Desenvolvedor removeu restrição X-Frame-Options do site, iframe restaurado.
+**Commits**: `fd1cce4` (remoção), `8d15505` (restauração)
+
 ---
 
 ## 📊 Estatísticas do Perfil
@@ -212,6 +231,11 @@ portfolio/
     </div>
 </div>
 ```
+
+**Valores Atuais**:
+- **5+ Projetos** (3 públicos no portfólio: Transcribe, Dashboard, Innova)
+- **2+ Anos** de experiência
+- **100% Dedicação** ao código
 
 ---
 
@@ -457,6 +481,38 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 
 ---
 
-**Última Atualização**: 2025-01-28
-**Versão do Projeto**: 1.0.0
+## 📅 Histórico de Atualizações Recentes
+
+### 2025-01-28 (Sessão 2)
+- ✅ Adicionado projeto #3: Landing Innova - B2B Premium
+- ✅ Resolvido problema de iframe bloqueado (X-Frame-Options)
+- ✅ Criado README.md profissional e interativo
+- ✅ Criado agents.md (este arquivo) para memória persistente
+- ✅ Renomeado .agent.md → agents.md (convenção https://agents.md)
+- ✅ 3 projetos reais sem placeholders
+- ✅ Todos os 3 projetos com iframe preview funcionando
+
+### 2025-01-28 (Sessão 1)
+- ✅ Criado repositório GitHub e deploy Vercel
+- ✅ Adicionado projeto #1: Transcribe App
+- ✅ Adicionado projeto #2: Crypto Dashboard Realtime
+- ✅ Migrado todos os ícones para Devicon SVG
+- ✅ Corrigido ícone do Vite (amarelo → gradiente correto)
+- ✅ Corrigido ícone de email não clicável (pointer-events)
+- ✅ Corrigido scroll hint "EXPLORAR" escondido (z-index)
+- ✅ Melhorada responsividade mobile (sidebar → bottom bar)
+- ✅ Atualizadas informações do desenvolvedor
+
+### Commits Importantes da Sessão 2
+- `7c9e9c5` - feat: Adiciona projeto Landing Innova
+- `fd1cce4` - fix: Remove iframe (X-Frame-Options)
+- `8d15505` - feat: Restaura iframe preview
+- `c990eda` - docs: Adiciona README e memória do agente
+- `2115e34` - refactor: Renomeia para agents.md
+
+---
+
+**Última Atualização**: 2025-01-28 (Sessão 2)
+**Versão do Projeto**: 1.1.0
 **Status**: ✅ Em produção (https://portfolio-adilsonjvr.vercel.app)
+**Projetos**: 3/3 reais (0 placeholders)
