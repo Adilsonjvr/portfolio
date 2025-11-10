@@ -593,7 +593,7 @@ document.addEventListener('keydown', (e) => {
 
 function activateEasterEgg() {
     console.log('%c🎉 KONAMI CODE ATIVADO! 🎉', 'color: #ff8c00; font-size: 20px; font-weight: bold;');
-    console.log('%c✨ Iniciando sequência épica em 3 fases...', 'color: #ffa500; font-size: 14px;');
+    console.log('%c✨ Iniciando sequência em 2 fases...', 'color: #ffa500; font-size: 14px;');
 
     // Prevenir múltiplas ativações
     if (document.querySelector('.easter-toast')) return;
@@ -609,81 +609,40 @@ function activateEasterEgg() {
         setTimeout(() => toast.remove(), 500);
     }, 3000);
 
-    // FASE 1: Glitch + Shake (0-2s)
-    console.log('%c⚡ FASE 1: Glitch + Shake', 'color: #ff6b00; font-size: 12px;');
-    document.body.style.animation = 'glitch 0.3s ease-in-out 6, shake 0.5s ease-in-out 4';
+    // FASE 1: Glitch + Shake leve (0-3s)
+    console.log('%c⚡ FASE 1: Glitch Intenso', 'color: #ff6b00; font-size: 12px;');
+    // Mais glitch (10 ciclos) e menos shake (2 ciclos)
+    document.body.style.animation = 'glitch 0.3s ease-in-out 10, shake 0.5s ease-in-out 2';
 
     setTimeout(() => {
-        // FASE 2: Explosão de Partículas (2-6s)
-        console.log('%c💥 FASE 2: Explosão de Partículas', 'color: #ff8c00; font-size: 12px;');
-        document.body.style.animation = '';
-        createParticleExplosion();
+        // FASE 2: Rainbow + Mensagem (3-10s = 7s)
+        console.log('%c🌈 FASE 2: Rainbow + Mensagem', 'color: #ffa500; font-size: 12px;');
+        document.body.style.animation = 'rainbow 7s linear';
+
+        // Mensagens sobre trabalhar juntos
+        const messages = [
+            'Vamos Trabalhar Juntos?<br>Transforme suas ideias em realidade! 💼',
+            'Pronto para Desenvolver?<br>Juntos criamos soluções incríveis! 🚀',
+            'Vamos Criar Algo Épico?<br>Seu próximo projeto começa aqui! 💡',
+            'Colaboração = Inovação<br>Desenvolva seu projeto comigo! 🤝',
+            'Quer Transformar sua Visão?<br>Vamos codar juntos! 💻✨'
+        ];
+
+        const message = document.createElement('div');
+        message.className = 'easter-message';
+        message.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+        document.body.appendChild(message);
 
         setTimeout(() => {
-            // FASE 3: Rainbow + Mensagem (6-10s)
-            console.log('%c🌈 FASE 3: Rainbow + Mensagem', 'color: #ffa500; font-size: 12px;');
-            document.body.style.animation = 'rainbow 4s linear';
+            message.style.animation = 'messagePopOut 0.4s ease-in forwards';
+            setTimeout(() => message.remove(), 400);
+        }, 6000); // Mensagem fica 6s
 
-            // Mensagem motivacional
-            const messages = [
-                'Continue Codando!<br>Você é Incrível! 🚀',
-                'Code is Art!<br>Keep Creating! 🎨',
-                'Never Stop Learning!<br>You Rock! ⚡',
-                'Debug the World!<br>One Line at a Time 💻',
-                'Você encontrou o segredo!<br>Continue explorando! 🔥'
-            ];
-
-            const message = document.createElement('div');
-            message.className = 'easter-message';
-            message.innerHTML = messages[Math.floor(Math.random() * messages.length)];
-            document.body.appendChild(message);
-
-            setTimeout(() => {
-                message.style.animation = 'messagePopOut 0.4s ease-in forwards';
-                setTimeout(() => message.remove(), 400);
-            }, 3000);
-
-            setTimeout(() => {
-                document.body.style.animation = '';
-                console.log('%c✅ Easter Egg finalizado!', 'color: #00ff00; font-size: 12px;');
-            }, 4000);
-        }, 4000);
-    }, 2000);
-}
-
-// Sistema de Partículas Explosivas
-function createParticleExplosion() {
-    const particleCount = 50;
-    const colors = ['#ff6b00', '#ff8c00', '#ffa500', '#ffb800'];
-
-    for (let i = 0; i < particleCount; i++) {
         setTimeout(() => {
-            const particle = document.createElement('div');
-            particle.className = 'easter-particle';
-
-            // Posição central da tela
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-
-            // Direção aleatória
-            const angle = (Math.PI * 2 * i) / particleCount;
-            const velocity = 200 + Math.random() * 300;
-            const tx = Math.cos(angle) * velocity;
-            const ty = Math.sin(angle) * velocity;
-
-            particle.style.left = centerX + 'px';
-            particle.style.top = centerY + 'px';
-            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-            particle.style.setProperty('--tx', tx + 'px');
-            particle.style.setProperty('--ty', ty + 'px');
-            particle.style.setProperty('--duration', (1 + Math.random() * 1.5) + 's');
-
-            document.body.appendChild(particle);
-
-            // Remove após animação
-            setTimeout(() => particle.remove(), 2500);
-        }, i * 20);
-    }
+            document.body.style.animation = '';
+            console.log('%c✅ Easter Egg finalizado!', 'color: #00ff00; font-size: 12px;');
+        }, 7000); // Total 7s de rainbow
+    }, 3000); // Glitch dura 3s
 }
 
 // ==================== INTERNACIONALIZAÇÃO (i18n) ====================
