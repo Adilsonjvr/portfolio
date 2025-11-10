@@ -2208,3 +2208,212 @@ body {
         font-size: 1rem;
     }
 }
+
+/* ==================== EASTER EGG EFFECTS ====================  */
+
+/* Toast Notification */
+.easter-toast {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: linear-gradient(135deg, var(--orange) 0%, #ff6b00 100%);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(255, 140, 0, 0.5);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    animation: toastSlideIn 0.5s var(--ease-bounce);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.easter-toast::before {
+    content: '🎮';
+    font-size: 2rem;
+    animation: toastPulse 1s ease-in-out infinite;
+}
+
+@keyframes toastSlideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toastSlideOut {
+    from {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes toastPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Phase 1: Glitch Effect */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+        filter: hue-rotate(0deg);
+    }
+    20% {
+        transform: translate(-5px, 5px);
+        filter: hue-rotate(90deg);
+    }
+    40% {
+        transform: translate(-5px, -5px);
+        filter: hue-rotate(180deg);
+    }
+    60% {
+        transform: translate(5px, 5px);
+        filter: hue-rotate(270deg);
+    }
+    80% {
+        transform: translate(5px, -5px);
+        filter: hue-rotate(360deg);
+    }
+    100% {
+        transform: translate(0);
+        filter: hue-rotate(0deg);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+/* Phase 2: Particles Container */
+.easter-particle {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--orange);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    box-shadow: 0 0 20px var(--orange);
+    animation: particleFloat var(--duration) ease-out forwards;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Phase 3: Rainbow Effect */
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg) brightness(1.1); }
+    25% { filter: hue-rotate(90deg) brightness(1.2); }
+    50% { filter: hue-rotate(180deg) brightness(1.1); }
+    75% { filter: hue-rotate(270deg) brightness(1.2); }
+    100% { filter: hue-rotate(360deg) brightness(1.1); }
+}
+
+/* Motivational Message */
+.easter-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(0, 0, 0, 0.95);
+    color: var(--orange);
+    padding: 3rem 4rem;
+    border-radius: 20px;
+    border: 3px solid var(--orange);
+    box-shadow: 0 0 60px rgba(255, 140, 0, 0.8);
+    z-index: 10000;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    animation: messagePopIn 0.6s var(--ease-bounce) forwards;
+    backdrop-filter: blur(10px);
+}
+
+.easter-message::before {
+    content: '✨';
+    display: block;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: messageGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes messagePopIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes messagePopOut {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes messageGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px var(--orange));
+        transform: scale(1);
+    }
+    50% {
+        filter: drop-shadow(0 0 30px var(--orange));
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive Easter Egg */
+@media (max-width: 768px) {
+    .easter-toast {
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .easter-message {
+        width: 90%;
+        padding: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .easter-message::before {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+    }
+}

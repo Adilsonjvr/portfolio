@@ -593,24 +593,97 @@ document.addEventListener('keydown', (e) => {
 
 function activateEasterEgg() {
     console.log('%c🎉 KONAMI CODE ATIVADO! 🎉', 'color: #ff8c00; font-size: 20px; font-weight: bold;');
+    console.log('%c✨ Iniciando sequência épica em 3 fases...', 'color: #ffa500; font-size: 14px;');
 
-    document.body.style.animation = 'rainbow 3s linear infinite';
+    // Prevenir múltiplas ativações
+    if (document.querySelector('.easter-toast')) return;
 
-    const easterStyle = document.createElement('style');
-    easterStyle.id = 'easter-egg-style';
-    easterStyle.textContent = `
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-    `;
-    document.head.appendChild(easterStyle);
+    // Toast Notification
+    const toast = document.createElement('div');
+    toast.className = 'easter-toast';
+    toast.textContent = 'KONAMI CODE ATIVADO!';
+    document.body.appendChild(toast);
 
     setTimeout(() => {
+        toast.style.animation = 'toastSlideOut 0.5s ease-in forwards';
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+
+    // FASE 1: Glitch + Shake (0-2s)
+    console.log('%c⚡ FASE 1: Glitch + Shake', 'color: #ff6b00; font-size: 12px;');
+    document.body.style.animation = 'glitch 0.3s ease-in-out 6, shake 0.5s ease-in-out 4';
+
+    setTimeout(() => {
+        // FASE 2: Explosão de Partículas (2-6s)
+        console.log('%c💥 FASE 2: Explosão de Partículas', 'color: #ff8c00; font-size: 12px;');
         document.body.style.animation = '';
-        const eggStyle = document.getElementById('easter-egg-style');
-        if (eggStyle) eggStyle.remove();
-    }, 5000);
+        createParticleExplosion();
+
+        setTimeout(() => {
+            // FASE 3: Rainbow + Mensagem (6-10s)
+            console.log('%c🌈 FASE 3: Rainbow + Mensagem', 'color: #ffa500; font-size: 12px;');
+            document.body.style.animation = 'rainbow 4s linear';
+
+            // Mensagem motivacional
+            const messages = [
+                'Continue Codando!<br>Você é Incrível! 🚀',
+                'Code is Art!<br>Keep Creating! 🎨',
+                'Never Stop Learning!<br>You Rock! ⚡',
+                'Debug the World!<br>One Line at a Time 💻',
+                'Você encontrou o segredo!<br>Continue explorando! 🔥'
+            ];
+
+            const message = document.createElement('div');
+            message.className = 'easter-message';
+            message.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+            document.body.appendChild(message);
+
+            setTimeout(() => {
+                message.style.animation = 'messagePopOut 0.4s ease-in forwards';
+                setTimeout(() => message.remove(), 400);
+            }, 3000);
+
+            setTimeout(() => {
+                document.body.style.animation = '';
+                console.log('%c✅ Easter Egg finalizado!', 'color: #00ff00; font-size: 12px;');
+            }, 4000);
+        }, 4000);
+    }, 2000);
+}
+
+// Sistema de Partículas Explosivas
+function createParticleExplosion() {
+    const particleCount = 50;
+    const colors = ['#ff6b00', '#ff8c00', '#ffa500', '#ffb800'];
+
+    for (let i = 0; i < particleCount; i++) {
+        setTimeout(() => {
+            const particle = document.createElement('div');
+            particle.className = 'easter-particle';
+
+            // Posição central da tela
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            // Direção aleatória
+            const angle = (Math.PI * 2 * i) / particleCount;
+            const velocity = 200 + Math.random() * 300;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+
+            particle.style.left = centerX + 'px';
+            particle.style.top = centerY + 'px';
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.setProperty('--tx', tx + 'px');
+            particle.style.setProperty('--ty', ty + 'px');
+            particle.style.setProperty('--duration', (1 + Math.random() * 1.5) + 's');
+
+            document.body.appendChild(particle);
+
+            // Remove após animação
+            setTimeout(() => particle.remove(), 2500);
+        }, i * 20);
+    }
 }
 
 // ==================== INTERNACIONALIZAÇÃO (i18n) ====================
