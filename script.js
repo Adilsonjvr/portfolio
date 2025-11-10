@@ -612,3 +612,226 @@ function activateEasterEgg() {
         if (eggStyle) eggStyle.remove();
     }, 5000);
 }
+
+// ==================== INTERNACIONALIZAÇÃO (i18n) ====================
+const translations = {
+    pt: {
+        nav: {
+            home: 'Home',
+            about: 'Sobre',
+            projects: 'Projetos',
+            skills: 'Skills',
+            contact: 'Contato'
+        },
+        home: {
+            title: {
+                word1: 'TRANSFORMANDO',
+                word2: 'IDEIAS',
+                word3: 'EM CÓDIGO'
+            },
+            role: 'Desenvolvedor FullStack',
+            subtitle: 'Desenvolvedor apaixonado por criar soluções inovadoras.<br>Cada projeto é uma nova oportunidade de evolução.',
+            cta: 'Vamos trabalhar juntos?',
+            explore: 'EXPLORAR'
+        },
+        about: {
+            title: {
+                html: 'Transformando<br><span class="highlight-orange">Visões</span> em<br>Realidade Digital'
+            },
+            text1: 'Desenvolvedor full stack com paixão por criar experiências digitais únicas e memoráveis.',
+            text2: 'Especializado em arquitetar soluções que unem performance, estética e funcionalidade. Cada projeto é uma oportunidade de explorar novos limites do que é possível com código.',
+            stats: {
+                projects: 'Projetos',
+                years: 'Anos',
+                dedication: 'Dedicação'
+            }
+        },
+        divider: {
+            quote: '"Inovação não é sobre ideias, é sobre execução"'
+        },
+        projects: {
+            title: 'Projetos em Destaque'
+        },
+        skills: {
+            title: 'Tecnologias & Skills'
+        },
+        contact: {
+            title: 'Vamos Trabalhar Juntos',
+            subtitle: 'Tem um projeto em mente? Estou sempre aberto a novas oportunidades e colaborações.',
+            email: {
+                label: 'Email'
+            },
+            location: {
+                label: 'Localização'
+            },
+            social: {
+                title: 'Redes Sociais'
+            },
+            form: {
+                name: 'Nome',
+                email: 'Email',
+                subject: 'Assunto',
+                message: 'Mensagem',
+                submit: 'Enviar Mensagem',
+                success: 'Mensagem enviada com sucesso!',
+                error: 'Erro ao enviar mensagem. Tente novamente.'
+            }
+        }
+    },
+    en: {
+        nav: {
+            home: 'Home',
+            about: 'About',
+            projects: 'Projects',
+            skills: 'Skills',
+            contact: 'Contact'
+        },
+        home: {
+            title: {
+                word1: 'TRANSFORMING',
+                word2: 'IDEAS',
+                word3: 'INTO CODE'
+            },
+            role: 'FullStack Developer',
+            subtitle: 'Passionate developer creating innovative solutions.<br>Each project is a new opportunity for growth.',
+            cta: "Let's work together?",
+            explore: 'EXPLORE'
+        },
+        about: {
+            title: {
+                html: 'Transforming<br><span class="highlight-orange">Visions</span> into<br>Digital Reality'
+            },
+            text1: 'Full stack developer with a passion for creating unique and memorable digital experiences.',
+            text2: 'Specialized in architecting solutions that combine performance, aesthetics, and functionality. Each project is an opportunity to explore new limits of what is possible with code.',
+            stats: {
+                projects: 'Projects',
+                years: 'Years',
+                dedication: 'Dedication'
+            }
+        },
+        divider: {
+            quote: '"Innovation is not about ideas, it\'s about execution"'
+        },
+        projects: {
+            title: 'Featured Projects'
+        },
+        skills: {
+            title: 'Technologies & Skills'
+        },
+        contact: {
+            title: "Let's Work Together",
+            subtitle: 'Have a project in mind? I\'m always open to new opportunities and collaborations.',
+            email: {
+                label: 'Email'
+            },
+            location: {
+                label: 'Location'
+            },
+            social: {
+                title: 'Social Media'
+            },
+            form: {
+                name: 'Name',
+                email: 'Email',
+                subject: 'Subject',
+                message: 'Message',
+                submit: 'Send Message',
+                success: 'Message sent successfully!',
+                error: 'Error sending message. Please try again.'
+            }
+        }
+    }
+};
+
+let currentLang = localStorage.getItem('language') || 'pt';
+
+function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+
+    // Update all elements with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const keys = element.getAttribute('data-i18n').split('.');
+        let translation = translations[lang];
+
+        keys.forEach(key => {
+            translation = translation[key];
+        });
+
+        if (translation) {
+            if (element.getAttribute('data-i18n').includes('.html')) {
+                element.innerHTML = translation;
+            } else {
+                element.textContent = translation;
+            }
+
+            // Update data-word for animated words
+            if (element.hasAttribute('data-word')) {
+                element.setAttribute('data-word', translation);
+            }
+        }
+    });
+
+    // Update active language button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+        }
+    });
+
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+}
+
+// Initialize language buttons
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        setLanguage(lang);
+    });
+});
+
+// Set initial language
+setLanguage(currentLang);
+
+// ==================== CONTACT FORM ====================
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+
+        // Simulate form submission
+        formStatus.textContent = translations[currentLang].contact.form.success;
+        formStatus.style.color = 'var(--orange)';
+        formStatus.style.display = 'block';
+
+        // Log form data (replace with actual submission logic)
+        console.log('Form submitted:', formData);
+
+        // Create mailto link as fallback
+        const mailtoLink = `mailto:adilsonjvr@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+
+        // Open email client
+        setTimeout(() => {
+            window.location.href = mailtoLink;
+        }, 500);
+
+        // Reset form
+        contactForm.reset();
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            formStatus.style.display = 'none';
+        }, 5000);
+    });
+}
