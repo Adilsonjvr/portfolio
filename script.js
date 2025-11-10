@@ -612,6 +612,13 @@ function activateEasterEgg() {
     // Texto quebrando a página - sem box, direto na tela
     setTimeout(() => {
         const text = 'VAMOS DESENVOLVER JUNTOS?';
+
+        // Criar backdrop escuro
+        const backdrop = document.createElement('div');
+        backdrop.className = 'breaking-backdrop';
+        document.body.appendChild(backdrop);
+
+        // Criar texto
         const breakingText = document.createElement('div');
         breakingText.className = 'breaking-text';
 
@@ -641,8 +648,10 @@ function activateEasterEgg() {
         // Remove após 10s
         setTimeout(() => {
             breakingText.style.animation = 'breakingTextOut 0.8s ease-in forwards';
+            backdrop.style.animation = 'backdropFadeOut 0.8s ease-in forwards';
             setTimeout(() => {
                 breakingText.remove();
+                backdrop.remove();
                 document.body.style.animation = '';
             }, 800);
             console.log('%c✅ Easter Egg finalizado!', 'color: #00ff00; font-size: 12px;');
