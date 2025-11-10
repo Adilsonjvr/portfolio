@@ -655,16 +655,6 @@ const translations = {
         skills: {
             title: 'Tecnologias & Skills'
         },
-        moreProjects: {
-            title: 'Outros Projetos',
-            subtitle: 'Uma seleção de trabalhos adicionais e experimentações',
-            view: 'Ver Projeto',
-            modal: {
-                tech: 'Tecnologias',
-                code: 'Ver Código',
-                demo: 'Ver Demo'
-            }
-        },
         contact: {
             title: 'Vamos Trabalhar Juntos',
             subtitle: 'Tem um projeto em mente? Estou sempre aberto a novas oportunidades e colaborações.',
@@ -732,16 +722,6 @@ const translations = {
         },
         skills: {
             title: 'Technologies & Skills'
-        },
-        moreProjects: {
-            title: 'Other Projects',
-            subtitle: 'A selection of additional works and experimentations',
-            view: 'View Project',
-            modal: {
-                tech: 'Technologies',
-                code: 'View Code',
-                demo: 'View Demo'
-            }
         },
         contact: {
             title: "Let's Work Together",
@@ -901,98 +881,3 @@ if (easterEggHint && easterEggModal) {
         }
     });
 }
-
-// ==================== PROJECT MODAL ====================
-const projectModal = document.getElementById('project-modal');
-const projectModalClose = document.getElementById('project-modal-close');
-const projectModalBackdrop = document.querySelector('.project-modal-backdrop');
-
-// Project data (exemplo - substituir com dados reais)
-const projectsData = {
-    5: {
-        title: 'API RESTful',
-        description: 'Sistema completo de autenticação e gerenciamento de usuários com JWT, validação de dados e documentação Swagger. Implementa CRUD completo, middleware de autenticação e autorização baseada em roles.',
-        image: 'https://via.placeholder.com/800x600/1a1a1a/ff8c00?text=API+RESTful',
-        tech: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Swagger'],
-        github: 'https://github.com/adilsonjvr/api-restful',
-        demo: 'https://api-demo.vercel.app'
-    },
-    6: {
-        title: 'Dashboard Analytics',
-        description: 'Interface moderna de visualização de dados em tempo real com gráficos interativos, filtros avançados e sistema de notificações. Utiliza WebSockets para atualizações em tempo real.',
-        image: 'https://via.placeholder.com/800x600/1a1a1a/ff8c00?text=Dashboard',
-        tech: ['React', 'Chart.js', 'Socket.io', 'Tailwind CSS', 'Redux'],
-        github: 'https://github.com/adilsonjvr/dashboard-analytics',
-        demo: 'https://dashboard-demo.vercel.app'
-    },
-    7: {
-        title: 'Mobile App',
-        description: 'Aplicativo móvel de gerenciamento de tarefas com sincronização em nuvem, notificações push e modo offline. Interface intuitiva com drag-and-drop para organização de tarefas.',
-        image: 'https://via.placeholder.com/800x600/1a1a1a/ff8c00?text=Mobile+App',
-        tech: ['React Native', 'Redux', 'Firebase', 'AsyncStorage'],
-        github: 'https://github.com/adilsonjvr/task-manager-app',
-        demo: 'https://expo.dev/@adilsonjvr/task-manager'
-    },
-    8: {
-        title: 'Landing Page',
-        description: 'Landing page responsiva com design moderno, animações CSS sofisticadas e otimização SEO. Formulário de contato integrado com validação e envio de emails.',
-        image: 'https://via.placeholder.com/800x600/1a1a1a/ff8c00?text=Landing+Page',
-        tech: ['HTML5', 'CSS3', 'JavaScript', 'GSAP', 'Webpack'],
-        github: 'https://github.com/adilsonjvr/landing-page',
-        demo: 'https://landing-demo.vercel.app'
-    }
-};
-
-// Open modal
-function openProjectModal(projectId) {
-    const project = projectsData[projectId];
-    if (!project) return;
-
-    // Populate modal
-    document.getElementById('modal-project-image').src = project.image;
-    document.getElementById('modal-project-image').alt = project.title;
-    document.getElementById('modal-project-title').textContent = project.title;
-    document.getElementById('modal-project-description').textContent = project.description;
-
-    // Tech stack
-    const techList = document.getElementById('modal-project-tech-list');
-    techList.innerHTML = project.tech.map(tech => `<span>${tech}</span>`).join('');
-
-    // Links
-    document.getElementById('modal-project-github').href = project.github;
-    document.getElementById('modal-project-demo').href = project.demo;
-
-    // Show modal
-    projectModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Close modal
-function closeProjectModal() {
-    projectModal.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Add click listeners to project cards
-document.querySelectorAll('.masonry-card').forEach(card => {
-    card.addEventListener('click', () => {
-        const projectId = card.getAttribute('data-project-id');
-        openProjectModal(projectId);
-    });
-});
-
-// Close modal events
-if (projectModalClose) {
-    projectModalClose.addEventListener('click', closeProjectModal);
-}
-
-if (projectModalBackdrop) {
-    projectModalBackdrop.addEventListener('click', closeProjectModal);
-}
-
-// Close on ESC key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && projectModal && projectModal.classList.contains('active')) {
-        closeProjectModal();
-    }
-});
