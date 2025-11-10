@@ -2284,27 +2284,18 @@ body {
     100% { filter: hue-rotate(360deg) brightness(1.1); }
 }
 
-/* Backdrop escuro para destacar o texto */
-.breaking-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    z-index: 10001;
-    animation: backdropFadeIn 0.5s ease-out forwards;
-}
-
 /* Breaking Text - Texto quebrando a página */
 .breaking-text {
-    position: fixed;
-    top: 50%;
+    position: absolute;
     left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10002; /* Acima do backdrop */
+    transform: translateX(-50%);
+    z-index: 1001; /* Acima da navegação */
     display: flex;
     flex-direction: column;
     gap: 1rem;
     pointer-events: none;
+    width: 90%;
+    max-width: 1200px;
 }
 
 .breaking-word {
@@ -2360,36 +2351,17 @@ body {
     }
 }
 
-/* Animação do backdrop */
-@keyframes backdropFadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
 /* Animação de saída */
 @keyframes breakingTextOut {
     0% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translateX(-50%) scale(1);
         filter: blur(0);
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(2);
+        transform: translateX(-50%) scale(2);
         filter: blur(20px);
-    }
-}
-
-@keyframes backdropFadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
     }
 }
 

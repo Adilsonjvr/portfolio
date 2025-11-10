@@ -609,31 +609,34 @@ function activateEasterEgg() {
         setTimeout(() => toast.remove(), 500);
     }, 3000);
 
-    // Texto quebrando a página - sem box, direto na tela
+    // Texto quebrando a página - na hero section
     setTimeout(() => {
         const text = 'VAMOS DESENVOLVER JUNTOS?';
-
-        // Criar backdrop escuro
-        const backdrop = document.createElement('div');
-        backdrop.className = 'breaking-backdrop';
-        document.body.appendChild(backdrop);
 
         // Criar texto
         const breakingText = document.createElement('div');
         breakingText.className = 'breaking-text';
 
-        // Criar cada letra separadamente para efeito de quebra
+        // Posicionar na hero section (não fixed, acompanha scroll)
+        const heroSection = document.querySelector('.home-section');
+        if (heroSection) {
+            const heroRect = heroSection.getBoundingClientRect();
+            const heroTop = window.scrollY + heroRect.top;
+            breakingText.style.top = `${heroTop + (heroRect.height / 2)}px`;
+        }
+
+        // Criar cada letra separadamente para efeito de quebra (mais lento)
         const words = text.split(' ');
         words.forEach((word, wordIndex) => {
             const wordSpan = document.createElement('div');
             wordSpan.className = 'breaking-word';
-            wordSpan.style.animationDelay = `${wordIndex * 0.15}s`;
+            wordSpan.style.animationDelay = `${wordIndex * 0.25}s`; // Mais lento: 0.15s → 0.25s
 
             word.split('').forEach((letter, letterIndex) => {
                 const letterSpan = document.createElement('span');
                 letterSpan.className = 'breaking-letter';
                 letterSpan.textContent = letter;
-                letterSpan.style.animationDelay = `${wordIndex * 0.15 + letterIndex * 0.05}s`;
+                letterSpan.style.animationDelay = `${wordIndex * 0.25 + letterIndex * 0.1}s`; // Mais lento: 0.05s → 0.1s
                 wordSpan.appendChild(letterSpan);
             });
 
@@ -648,10 +651,8 @@ function activateEasterEgg() {
         // Remove após 10s
         setTimeout(() => {
             breakingText.style.animation = 'breakingTextOut 0.8s ease-in forwards';
-            backdrop.style.animation = 'backdropFadeOut 0.8s ease-in forwards';
             setTimeout(() => {
                 breakingText.remove();
-                backdrop.remove();
                 document.body.style.animation = '';
             }, 800);
             console.log('%c✅ Easter Egg finalizado!', 'color: #00ff00; font-size: 12px;');
