@@ -593,7 +593,7 @@ document.addEventListener('keydown', (e) => {
 
 function activateEasterEgg() {
     console.log('%c🎉 KONAMI CODE ATIVADO! 🎉', 'color: #ff8c00; font-size: 20px; font-weight: bold;');
-    console.log('%c✨ Iniciando sequência em 2 fases...', 'color: #ffa500; font-size: 14px;');
+    console.log('%c💥 Texto quebrando a página...', 'color: #ffa500; font-size: 14px;');
 
     // Prevenir múltiplas ativações
     if (document.querySelector('.easter-toast')) return;
@@ -609,40 +609,45 @@ function activateEasterEgg() {
         setTimeout(() => toast.remove(), 500);
     }, 3000);
 
-    // FASE 1: Glitch + Shake leve (0-3s)
-    console.log('%c⚡ FASE 1: Glitch Intenso', 'color: #ff6b00; font-size: 12px;');
-    // Mais glitch (10 ciclos) e menos shake (2 ciclos)
-    document.body.style.animation = 'glitch 0.3s ease-in-out 10, shake 0.5s ease-in-out 2';
-
+    // Texto quebrando a página - sem box, direto na tela
     setTimeout(() => {
-        // FASE 2: Rainbow + Mensagem (3-10s = 7s)
-        console.log('%c🌈 FASE 2: Rainbow + Mensagem', 'color: #ffa500; font-size: 12px;');
-        document.body.style.animation = 'rainbow 7s linear';
+        const text = 'VAMOS DESENVOLVER JUNTOS?';
+        const breakingText = document.createElement('div');
+        breakingText.className = 'breaking-text';
 
-        // Mensagens sobre trabalhar juntos
-        const messages = [
-            'Vamos Trabalhar Juntos?<br>Transforme suas ideias em realidade! 💼',
-            'Pronto para Desenvolver?<br>Juntos criamos soluções incríveis! 🚀',
-            'Vamos Criar Algo Épico?<br>Seu próximo projeto começa aqui! 💡',
-            'Colaboração = Inovação<br>Desenvolva seu projeto comigo! 🤝',
-            'Quer Transformar sua Visão?<br>Vamos codar juntos! 💻✨'
-        ];
+        // Criar cada letra separadamente para efeito de quebra
+        const words = text.split(' ');
+        words.forEach((word, wordIndex) => {
+            const wordSpan = document.createElement('div');
+            wordSpan.className = 'breaking-word';
+            wordSpan.style.animationDelay = `${wordIndex * 0.15}s`;
 
-        const message = document.createElement('div');
-        message.className = 'easter-message';
-        message.innerHTML = messages[Math.floor(Math.random() * messages.length)];
-        document.body.appendChild(message);
+            word.split('').forEach((letter, letterIndex) => {
+                const letterSpan = document.createElement('span');
+                letterSpan.className = 'breaking-letter';
+                letterSpan.textContent = letter;
+                letterSpan.style.animationDelay = `${wordIndex * 0.15 + letterIndex * 0.05}s`;
+                wordSpan.appendChild(letterSpan);
+            });
 
+            breakingText.appendChild(wordSpan);
+        });
+
+        document.body.appendChild(breakingText);
+
+        // Rainbow suave no fundo
+        document.body.style.animation = 'rainbow 10s linear';
+
+        // Remove após 10s
         setTimeout(() => {
-            message.style.animation = 'messagePopOut 0.4s ease-in forwards';
-            setTimeout(() => message.remove(), 400);
-        }, 6000); // Mensagem fica 6s
-
-        setTimeout(() => {
-            document.body.style.animation = '';
+            breakingText.style.animation = 'breakingTextOut 0.8s ease-in forwards';
+            setTimeout(() => {
+                breakingText.remove();
+                document.body.style.animation = '';
+            }, 800);
             console.log('%c✅ Easter Egg finalizado!', 'color: #00ff00; font-size: 12px;');
-        }, 7000); // Total 7s de rainbow
-    }, 3000); // Glitch dura 3s
+        }, 9000);
+    }, 500);
 }
 
 // ==================== INTERNACIONALIZAÇÃO (i18n) ====================
