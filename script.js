@@ -759,7 +759,8 @@ function setLanguage(lang) {
         });
 
         if (translation) {
-            if (element.getAttribute('data-i18n').includes('.html')) {
+            // Use innerHTML if translation contains HTML tags or if data-i18n includes .html
+            if (element.getAttribute('data-i18n').includes('.html') || translation.includes('<br>') || translation.includes('<')) {
                 element.innerHTML = translation;
             } else {
                 element.textContent = translation;

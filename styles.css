@@ -171,7 +171,8 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding-top: 120px; /* Espaço extra para a nav */
+    padding-top: 80px; /* Espaço para a nav */
+    padding-bottom: 60px; /* Espaço para o scroll hint */
 }
 
 #creative-canvas {
@@ -188,15 +189,16 @@ body {
     position: relative;
     z-index: 10;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem 2rem;
+    max-width: 1200px;
 }
 
 .home-title {
-    font-size: clamp(3rem, 10vw, 7rem);
+    font-size: clamp(2.5rem, 8vw, 5rem);
     font-weight: 900;
     line-height: 0.9;
     letter-spacing: -0.05em;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .word {
@@ -227,11 +229,14 @@ body {
 }
 
 .home-subtitle {
-    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(0.9rem, 1.8vw, 1.2rem);
     color: var(--gray);
     font-weight: 300;
     letter-spacing: 0.05em;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.5s forwards;
 }
@@ -251,7 +256,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 6rem; /* Aumentado para dar mais espaço após o CTA */
+    margin-top: 3rem;
 }
 
 .home-divider span {
@@ -1304,30 +1309,30 @@ body {
 
 /* ==================== MANIFESTO INTRO ==================== */
 .home-intro {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.8s forwards;
 }
 
 .intro-name {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
     background: var(--gradient-orange);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .intro-role {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
     color: var(--gray);
     font-weight: 300;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .intro-location {
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     color: var(--gray-dark);
     display: flex;
     align-items: center;
@@ -1542,13 +1547,13 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.2rem 2.5rem;
-    margin-top: 3rem;
-    margin-bottom: 2rem; /* Espaço extra abaixo do botão */
+    padding: 1rem 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
     background: var(--gradient-orange);
     color: var(--white);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     border-radius: 50px;
     border: 2px solid rgba(255, 140, 0, 0.5);
