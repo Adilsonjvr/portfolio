@@ -49,6 +49,10 @@ body {
     overflow-x: hidden;
     position: relative;
     padding-left: 80px; /* Espaço para sidebar */
+    /* Melhorias de responsividade - word wrap global */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 /* ==================== CAMADAS DE PARALAXE ==================== */
@@ -694,7 +698,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 85%;
-    height: 85%;
+    /* Usar aspect-ratio ao invés de altura fixa para melhor responsividade */
+    aspect-ratio: 16/9;
+    max-height: 85%;
     border-radius: 15px;
     overflow: hidden;
     background: var(--black);
@@ -710,6 +716,7 @@ body {
     border-radius: 15px;
     opacity: 0.8;
     transition: opacity 0.3s ease;
+    object-fit: cover; /* Prevenir distorção do conteúdo */
 }
 
 .project-item:hover .project-preview iframe {
@@ -1223,7 +1230,8 @@ body {
     }
 
     .project-preview {
-        height: 200px; /* Reduzir altura do iframe no mobile */
+        width: 95%; /* Ocupar mais espaço em mobile */
+        aspect-ratio: 16/10; /* Proporção mais adequada para mobile */
     }
 
     .project-tech span {
@@ -1486,7 +1494,8 @@ body {
 @media (max-width: 768px) {
     body {
         padding-left: 0;
-        padding-bottom: 80px; /* Espaço para bottom bar */
+        /* Safe area para notch em dispositivos modernos (iPhone X+) */
+        padding-bottom: max(80px, env(safe-area-inset-bottom));
     }
 
     .nav-minimal {
@@ -2179,10 +2188,12 @@ body {
 /* ==================== RESPONSIVE EASTER EGG ====================  */
 @media (max-width: 768px) {
     .easter-egg-hint {
-        bottom: 80px;
+        /* Posicionar acima do bottom bar + safe area */
+        bottom: max(90px, calc(80px + env(safe-area-inset-bottom)));
         right: 15px;
         width: 36px;
         height: 36px;
+        z-index: 1001; /* Acima do bottom bar */
     }
 
     .easter-egg-hint svg {
