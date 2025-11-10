@@ -676,6 +676,11 @@ const translations = {
                 success: 'Mensagem enviada com sucesso!',
                 error: 'Erro ao enviar mensagem. Tente novamente.'
             }
+        },
+        easter: {
+            title: '🎮 Easter Egg Secreto!',
+            hint: 'Experimente digitar o lendário <strong>Konami Code</strong> para desbloquear uma surpresa especial:',
+            tip: 'Use as setas do teclado e depois as teclas B e A!'
         }
     },
     en: {
@@ -739,6 +744,11 @@ const translations = {
                 success: 'Message sent successfully!',
                 error: 'Error sending message. Please try again.'
             }
+        },
+        easter: {
+            title: '🎮 Secret Easter Egg!',
+            hint: 'Try typing the legendary <strong>Konami Code</strong> to unlock a special surprise:',
+            tip: 'Use the arrow keys and then B and A keys!'
         }
     }
 };
@@ -834,5 +844,40 @@ if (contactForm) {
         setTimeout(() => {
             formStatus.style.display = 'none';
         }, 5000);
+    });
+}
+
+// ==================== EASTER EGG MODAL ====================
+const easterEggHint = document.getElementById('easter-egg-hint');
+const easterEggModal = document.getElementById('easter-egg-modal');
+const modalClose = document.getElementById('modal-close');
+
+if (easterEggHint && easterEggModal) {
+    // Open modal
+    easterEggHint.addEventListener('click', () => {
+        easterEggModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Close modal
+    const closeModal = () => {
+        easterEggModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    modalClose.addEventListener('click', closeModal);
+
+    // Close on backdrop click
+    easterEggModal.addEventListener('click', (e) => {
+        if (e.target === easterEggModal) {
+            closeModal();
+        }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && easterEggModal.classList.contains('active')) {
+            closeModal();
+        }
     });
 }

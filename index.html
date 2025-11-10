@@ -542,8 +542,42 @@
         <div class="footer-content">
             <p>&copy; 2025 | Desenvolvido com vibecoding</p>
             <p class="footer-quote">Código é arte</p>
+            <button class="easter-egg-hint" id="easter-egg-hint" aria-label="Easter egg hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </button>
         </div>
     </footer>
+
+    <!-- Easter Egg Modal -->
+    <div class="easter-egg-modal" id="easter-egg-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h3 data-i18n="easter.title">🎮 Easter Egg Secreto!</h3>
+            <p data-i18n="easter.hint">Experimente digitar o lendário <strong>Konami Code</strong> para desbloquear uma surpresa especial:</p>
+            <div class="konami-code">
+                <span class="key">↑</span>
+                <span class="key">↑</span>
+                <span class="key">↓</span>
+                <span class="key">↓</span>
+                <span class="key">←</span>
+                <span class="key">→</span>
+                <span class="key">←</span>
+                <span class="key">→</span>
+                <span class="key">B</span>
+                <span class="key">A</span>
+            </div>
+            <p class="modal-tip" data-i18n="easter.tip">Use as setas do teclado e depois as teclas B e A!</p>
+        </div>
+    </div>
 
     <!-- Ícones Sociais Fixos Laterais -->
     <aside class="social-sidebar">
