@@ -171,6 +171,7 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    padding-top: 120px; /* Espaço extra para a nav */
 }
 
 #creative-canvas {
@@ -250,7 +251,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 4rem;
+    margin-top: 6rem; /* Aumentado para dar mais espaço após o CTA */
 }
 
 .home-divider span {
@@ -1542,20 +1543,39 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 1.2rem 2.5rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem; /* Espaço extra abaixo do botão */
     background: var(--gradient-orange);
     color: var(--white);
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 600;
     border-radius: 50px;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 140, 0, 0.5);
     transition: all 0.4s var(--ease-smooth);
     position: relative;
     overflow: hidden;
     z-index: 1;
+    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.3),
+                0 0 40px rgba(255, 140, 0, 0.2);
+    animation: ctaPulse 3s ease-in-out infinite;
 }
 
+/* Animação de pulse contínua */
+@keyframes ctaPulse {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(255, 140, 0, 0.3),
+                    0 0 40px rgba(255, 140, 0, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 6px 30px rgba(255, 140, 0, 0.5),
+                    0 0 60px rgba(255, 140, 0, 0.4);
+        transform: scale(1.02);
+    }
+}
+
+/* Efeito de onda no hover */
 .cta-button::before {
     content: '';
     position: absolute;
@@ -1564,10 +1584,28 @@ body {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
     z-index: -1;
+}
+
+/* Efeito de brilho animado */
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.8s ease;
 }
 
 .cta-button:hover::before {
@@ -1575,20 +1613,34 @@ body {
     height: 400px;
 }
 
+.cta-button:hover::after {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
 .cta-button:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-orange-lg);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 8px 40px rgba(255, 140, 0, 0.6),
+                0 0 80px rgba(255, 140, 0, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
     border-color: var(--orange-light);
+    animation: none; /* Para a animação de pulse no hover */
+}
+
+.cta-button:active {
+    transform: translateY(-4px) scale(1.02);
+    transition: all 0.1s ease;
 }
 
 .cta-button svg {
     width: 24px;
     height: 24px;
-    transition: transform 0.4s var(--ease-smooth);
+    transition: transform 0.4s var(--ease-bounce);
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
 }
 
 .cta-button:hover svg {
-    transform: translateX(5px);
+    transform: translateX(8px) rotate(15deg);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
 }
 
 /* ==================== LANGUAGE TOGGLE ====================  */
