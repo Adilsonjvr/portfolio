@@ -17,9 +17,15 @@ function initCreativeCanvas() {
     const ctx = canvas.getContext('2d');
     let particles = [];
     let mouse = { x: null, y: null, radius: 150 };
+    let particleColor = { r: 255, g: 140, b: 0 }; // Cor padrão laranja
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    // Listener para mudança de cor
+    canvas.addEventListener('colorchange', (e) => {
+        particleColor = e.detail.rgb;
+    });
 
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
@@ -51,8 +57,8 @@ function initCreativeCanvas() {
 
         draw() {
             const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-            gradient.addColorStop(0, 'rgba(255, 140, 0, 0.8)');
-            gradient.addColorStop(1, 'rgba(255, 165, 0, 0)');
+            gradient.addColorStop(0, `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, 0.8)`);
+            gradient.addColorStop(1, `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, 0)`);
 
             ctx.fillStyle = gradient;
             ctx.beginPath();
@@ -115,7 +121,7 @@ function initCreativeCanvas() {
 
                 if (distance < 100) {
                     const opacity = 1 - (distance / 100);
-                    ctx.strokeStyle = `rgba(255, 140, 0, ${opacity * 0.3})`;
+                    ctx.strokeStyle = `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, ${opacity * 0.3})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particles[a].x, particles[a].y);
@@ -858,39 +864,16 @@ const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
-        };
-
-        // Simulate form submission
-        formStatus.textContent = translations[currentLang].contact.form.success;
+    contactForm.addEventListener('submit', function(e) {
+        // Mostrar mensagem de envio
+        formStatus.textContent = 'Enviando mensagem...';
         formStatus.style.color = 'var(--orange)';
         formStatus.style.display = 'block';
 
-        // Log form data (replace with actual submission logic)
-        console.log('Form submitted:', formData);
+        // O FormSubmit vai lidar com o envio real
+        // Não prevenir o default para permitir o submit normal
 
-        // Create mailto link as fallback
-        const mailtoLink = `mailto:adilsonjvr@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
-
-        // Open email client
-        setTimeout(() => {
-            window.location.href = mailtoLink;
-        }, 500);
-
-        // Reset form
-        contactForm.reset();
-
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-            formStatus.style.display = 'none';
-        }, 5000);
+        console.log('📧 Formulário sendo enviado via FormSubmit...');
     });
 }
 
@@ -1001,6 +984,25 @@ function applyColorTheme(color) {
     if (layer1) layer1.style.background = `radial-gradient(circle at 20% 30%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.05) 0%, transparent 50%)`;
     if (layer2) layer2.style.background = `radial-gradient(circle at 80% 70%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.03) 0%, transparent 50%)`;
     if (layer3) layer3.style.background = `radial-gradient(circle at 50% 50%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.02) 0%, transparent 70%)`;
+
+    // Update custom cursor colors
+    const customCursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+
+    if (customCursor) {
+        customCursor.style.borderColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`;
+    }
+
+    if (cursorDot) {
+        cursorDot.style.background = color;
+    }
+
+    // Update canvas particles (if exists)
+    const canvas = document.getElementById('creative-canvas');
+    if (canvas && canvas.getContext) {
+        // Trigger canvas color update by dispatching custom event
+        canvas.dispatchEvent(new CustomEvent('colorchange', { detail: { color, rgb } }));
+    }
 
     // Save to localStorage
     localStorage.setItem('themeColor', color);
