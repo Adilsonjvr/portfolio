@@ -976,6 +976,10 @@ function applyColorTheme(color) {
     root.style.setProperty('--shadow-orange', `0 0 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`);
     root.style.setProperty('--shadow-orange-lg', `0 0 60px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.7)`);
 
+    // Update glow effects for animations
+    root.style.setProperty('--glow-light', `drop-shadow(0 0 10px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5))`);
+    root.style.setProperty('--glow-strong', `drop-shadow(0 0 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8))`);
+
     // Update parallax layers
     const layer1 = document.querySelector('.layer-1');
     const layer2 = document.querySelector('.layer-2');
@@ -1003,6 +1007,33 @@ function applyColorTheme(color) {
         // Trigger canvas color update by dispatching custom event
         canvas.dispatchEvent(new CustomEvent('colorchange', { detail: { color, rgb } }));
     }
+
+    // Update card borders and strokes
+    const elementsToUpdate = [
+        { selector: '.project-bg', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` },
+        { selector: '.project-index', property: 'webkitTextStroke', value: `2px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` },
+        { selector: '.about-number', property: 'webkitTextStroke', value: `2px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)` },
+        { selector: '.section-number', property: 'webkitTextStroke', value: `2px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)` },
+        { selector: '.stat-box', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` },
+        { selector: '.project-tech span', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)` },
+        { selector: '.tech-item', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` },
+        { selector: '.social-icon', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` },
+        { selector: '.sidebar-icon', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)` },
+        { selector: '.nav-minimal', property: 'borderBottomColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)` },
+        { selector: '.contact-item', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)` },
+        { selector: '.contact-social', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)` },
+        { selector: '.social-link', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` },
+        { selector: '.contact-form', property: 'borderColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)` },
+        { selector: '.form-group input', property: 'borderBottomColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` },
+        { selector: '.form-group textarea', property: 'borderBottomColor', value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)` }
+    ];
+
+    elementsToUpdate.forEach(({ selector, property, value }) => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+            el.style[property] = value;
+        });
+    });
 
     // Save to localStorage
     localStorage.setItem('themeColor', color);
