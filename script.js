@@ -863,12 +863,49 @@ setLanguage(currentLang);
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        // Mostrar mensagem de envio
-        formStatus.textContent = 'Enviando mensagem...';
+// Verificar se voltou após envio bem-sucedido
+if (window.location.hash === '#contact' && document.referrer.includes('formsubmit.co')) {
+    if (formStatus) {
+        formStatus.textContent = '✓ Mensagem enviada com sucesso! Obrigado pelo contato.';
         formStatus.style.color = 'var(--orange)';
         formStatus.style.display = 'block';
+        formStatus.style.background = 'rgba(255, 140, 0, 0.1)';
+        formStatus.style.padding = '1rem';
+        formStatus.style.borderRadius = '8px';
+        formStatus.style.marginTop = '1rem';
+
+        // Ocultar mensagem após 8 segundos
+        setTimeout(() => {
+            formStatus.style.opacity = '0';
+            formStatus.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+                formStatus.style.opacity = '1';
+            }, 500);
+        }, 8000);
+    }
+}
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        // Desabilitar botão para evitar envios duplicados
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.6';
+            submitBtn.style.cursor = 'not-allowed';
+        }
+
+        // Mostrar mensagem de envio
+        if (formStatus) {
+            formStatus.textContent = '📤 Enviando mensagem...';
+            formStatus.style.color = 'var(--orange)';
+            formStatus.style.display = 'block';
+            formStatus.style.background = 'rgba(255, 140, 0, 0.05)';
+            formStatus.style.padding = '1rem';
+            formStatus.style.borderRadius = '8px';
+            formStatus.style.marginTop = '1rem';
+        }
 
         // O FormSubmit vai lidar com o envio real
         // Não prevenir o default para permitir o submit normal

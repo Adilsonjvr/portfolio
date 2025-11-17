@@ -545,10 +545,10 @@
 
                 <form class="contact-form" id="contact-form" action="https://formsubmit.co/adilsonjvr@gmail.com" method="POST">
                     <!-- FormSubmit Configuration -->
-                    <input type="hidden" name="_subject" value="Nova mensagem do Portfólio!">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://adilsonjvr.github.io/portfolio/#contact">
+                    <input type="text" name="_honey" style="display:none">
 
                     <div class="form-group">
                         <label for="name" data-i18n="contact.form.name">Nome</label>
@@ -564,7 +564,7 @@
 
                     <div class="form-group">
                         <label for="subject" data-i18n="contact.form.subject">Assunto</label>
-                        <input type="text" id="subject" name="_subject" required>
+                        <input type="text" id="subject" name="_subject" required placeholder="Assunto da mensagem">
                         <span class="form-line"></span>
                     </div>
 
