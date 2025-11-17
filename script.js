@@ -928,3 +928,178 @@ if (easterEggHint && easterEggModal) {
         }
     });
 }
+
+// ==================== COLOR CUSTOMIZER ====================
+const colorToggle = document.getElementById('color-toggle');
+const colorPanel = document.getElementById('color-panel');
+const colorClose = document.getElementById('color-close');
+const colorOptions = document.querySelectorAll('.color-option');
+const customColorInput = document.getElementById('custom-color');
+const colorReset = document.getElementById('color-reset');
+
+// Default color
+const DEFAULT_COLOR = '#ff8c00';
+
+// Helper function to convert hex to RGB
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+// Helper function to lighten/darken color
+function adjustColor(hex, percent) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return hex;
+
+    const adjust = (value) => {
+        const adjusted = Math.round(value + (255 - value) * (percent / 100));
+        return Math.max(0, Math.min(255, adjusted));
+    };
+
+    const r = percent > 0 ? adjust(rgb.r) : Math.round(rgb.r * (1 + percent / 100));
+    const g = percent > 0 ? adjust(rgb.g) : Math.round(rgb.g * (1 + percent / 100));
+    const b = percent > 0 ? adjust(rgb.b) : Math.round(rgb.b * (1 + percent / 100));
+
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+}
+
+// Apply color theme
+function applyColorTheme(color) {
+    const root = document.documentElement;
+
+    // Calculate color variations
+    const darkColor = adjustColor(color, -15);
+    const lightColor = adjustColor(color, 15);
+
+    const rgb = hexToRgb(color);
+    const glowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`;
+
+    // Update CSS variables
+    root.style.setProperty('--orange-dark', darkColor);
+    root.style.setProperty('--orange', color);
+    root.style.setProperty('--orange-light', lightColor);
+    root.style.setProperty('--orange-glow', glowColor);
+
+    // Update gradients
+    root.style.setProperty('--gradient-orange', `linear-gradient(135deg, ${darkColor} 0%, ${color} 50%, ${lightColor} 100%)`);
+    root.style.setProperty('--gradient-orange-vertical', `linear-gradient(180deg, ${darkColor} 0%, ${lightColor} 100%)`);
+    root.style.setProperty('--gradient-radial', `radial-gradient(circle, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1) 0%, transparent 70%)`);
+
+    // Update shadows
+    root.style.setProperty('--shadow-orange', `0 0 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`);
+    root.style.setProperty('--shadow-orange-lg', `0 0 60px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.7)`);
+
+    // Update parallax layers
+    const layer1 = document.querySelector('.layer-1');
+    const layer2 = document.querySelector('.layer-2');
+    const layer3 = document.querySelector('.layer-3');
+
+    if (layer1) layer1.style.background = `radial-gradient(circle at 20% 30%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.05) 0%, transparent 50%)`;
+    if (layer2) layer2.style.background = `radial-gradient(circle at 80% 70%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.03) 0%, transparent 50%)`;
+    if (layer3) layer3.style.background = `radial-gradient(circle at 50% 50%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.02) 0%, transparent 70%)`;
+
+    // Save to localStorage
+    localStorage.setItem('themeColor', color);
+
+    console.log(`🎨 Tema atualizado para: ${color}`);
+}
+
+// Toggle panel
+colorToggle.addEventListener('click', () => {
+    colorPanel.classList.toggle('active');
+});
+
+// Close panel
+colorClose.addEventListener('click', () => {
+    colorPanel.classList.remove('active');
+});
+
+// Close panel when clicking outside
+document.addEventListener('click', (e) => {
+    if (!colorToggle.contains(e.target) && !colorPanel.contains(e.target)) {
+        colorPanel.classList.remove('active');
+    }
+});
+
+// Color option selection
+colorOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        // Remove active from all
+        colorOptions.forEach(opt => opt.classList.remove('active'));
+
+        // Add active to selected
+        option.classList.add('active');
+
+        // Get color and apply
+        const color = option.getAttribute('data-color');
+        applyColorTheme(color);
+
+        // Update custom color input
+        customColorInput.value = color;
+    });
+});
+
+// Custom color picker
+customColorInput.addEventListener('input', (e) => {
+    const color = e.target.value;
+
+    // Remove active from preset colors
+    colorOptions.forEach(opt => opt.classList.remove('active'));
+
+    // Apply custom color
+    applyColorTheme(color);
+});
+
+// Reset to default
+colorReset.addEventListener('click', () => {
+    // Reset to default orange
+    applyColorTheme(DEFAULT_COLOR);
+
+    // Update UI
+    customColorInput.value = DEFAULT_COLOR;
+
+    // Mark default color as active
+    colorOptions.forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.getAttribute('data-color') === DEFAULT_COLOR) {
+            opt.classList.add('active');
+        }
+    });
+
+    // Show feedback
+    const originalText = colorReset.textContent;
+    colorReset.textContent = '✓ Resetado!';
+    setTimeout(() => {
+        colorReset.textContent = originalText;
+    }, 1500);
+});
+
+// Load saved color on page load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedColor = localStorage.getItem('themeColor');
+
+    if (savedColor && savedColor !== DEFAULT_COLOR) {
+        applyColorTheme(savedColor);
+        customColorInput.value = savedColor;
+
+        // Mark corresponding color as active
+        let foundPreset = false;
+        colorOptions.forEach(opt => {
+            if (opt.getAttribute('data-color') === savedColor) {
+                opt.classList.add('active');
+                foundPreset = true;
+            } else {
+                opt.classList.remove('active');
+            }
+        });
+
+        // If not a preset color, keep custom
+        if (!foundPreset) {
+            colorOptions.forEach(opt => opt.classList.remove('active'));
+        }
+    }
+});

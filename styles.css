@@ -2392,3 +2392,289 @@ body {
             2px 2px 0 rgba(0, 0, 0, 0.8);
     }
 }
+
+/* ==================== COLOR CUSTOMIZER ====================  */
+.color-customizer {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 999;
+}
+
+.color-customizer-toggle {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-orange);
+    border: 2px solid rgba(255, 140, 0, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-smooth);
+    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+    animation: colorTogglePulse 3s ease-in-out infinite;
+}
+
+@keyframes colorTogglePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 30px rgba(255, 140, 0, 0.6);
+    }
+}
+
+.color-customizer-toggle:hover {
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 6px 30px rgba(255, 140, 0, 0.7);
+    animation: none;
+}
+
+.color-customizer-toggle svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--white);
+    transition: transform 0.4s ease;
+}
+
+.color-customizer-toggle:hover svg {
+    transform: rotate(-180deg);
+}
+
+/* Color Panel */
+.color-customizer-panel {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 320px;
+    background: var(--black-light);
+    border: 2px solid var(--orange);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(255, 140, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.4s var(--ease-bounce);
+}
+
+.color-customizer-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.color-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.color-panel-header h3 {
+    font-size: 1.3rem;
+    color: var(--orange);
+    font-weight: 700;
+}
+
+.color-panel-close {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.color-panel-close:hover {
+    background: var(--orange);
+    transform: rotate(90deg);
+}
+
+.color-panel-close svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--orange);
+    transition: stroke 0.3s ease;
+}
+
+.color-panel-close:hover svg {
+    stroke: var(--white);
+}
+
+.color-panel-description {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Color Palette Grid */
+.color-palette {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.color-option {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--color);
+    border: 3px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s var(--ease-smooth);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.color-option:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.color-option.active {
+    border-color: var(--white);
+    box-shadow: 0 0 0 3px var(--color),
+                0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.color-checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 900;
+    opacity: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+}
+
+.color-option.active .color-checkmark {
+    opacity: 1;
+}
+
+/* Custom Color Picker */
+.color-custom {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--black-lighter);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+.color-custom label {
+    display: block;
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+.color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.color-picker-wrapper input[type="color"] {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--orange);
+    border-radius: 12px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.color-picker-wrapper input[type="color"]:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+}
+
+.color-picker-label {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Reset Button */
+.color-reset {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    background: var(--black-lighter);
+    border: 2px solid var(--orange);
+    border-radius: 12px;
+    color: var(--orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.color-reset:hover {
+    background: var(--orange);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+}
+
+.color-reset svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
+/* ==================== RESPONSIVE COLOR CUSTOMIZER ====================  */
+@media (max-width: 768px) {
+    .color-customizer {
+        bottom: max(90px, calc(80px + env(safe-area-inset-bottom)));
+        right: 15px;
+    }
+
+    .color-customizer-toggle {
+        width: 45px;
+        height: 45px;
+    }
+
+    .color-customizer-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .color-customizer-panel {
+        width: calc(100vw - 2rem);
+        max-width: 300px;
+        right: 0;
+        bottom: 65px;
+        padding: 1.5rem 1rem;
+    }
+
+    .color-panel-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .color-palette {
+        gap: 0.6rem;
+    }
+
+    .color-picker-wrapper input[type="color"] {
+        width: 50px;
+        height: 50px;
+    }
+}
