@@ -25,11 +25,64 @@
     --gradient-orange: linear-gradient(135deg, #ff6b00 0%, #ff8c00 50%, #ffa500 100%);
     --gradient-orange-vertical: linear-gradient(180deg, #ff6b00 0%, #ffa500 100%);
     --gradient-radial: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
+    --gradient-radial-02: radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.02) 0%, transparent 70%);
+    --gradient-radial-05: radial-gradient(circle, rgba(255, 140, 0, 0.05) 0%, transparent 70%);
+    --gradient-radial-20: radial-gradient(circle, rgba(255, 140, 0, 0.2), transparent);
+    --gradient-linear-subtle: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+    --gradient-linear-hover: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(255, 140, 0, 0.08) 100%);
 
     /* Sombras */
     --shadow-orange: 0 0 30px rgba(255, 140, 0, 0.5);
     --shadow-orange-lg: 0 0 60px rgba(255, 140, 0, 0.7);
     --shadow-black: 0 10px 40px rgba(0, 0, 0, 0.8);
+
+    /* Drop shadows para filtros */
+    --drop-shadow-sm: drop-shadow(0 4px 10px rgba(255, 107, 0, 0.2));
+    --drop-shadow-md: drop-shadow(0 8px 20px rgba(255, 107, 0, 0.4));
+    --drop-shadow-skills: 0 10px 40px rgba(255, 107, 0, 0.3);
+
+    /* Shadow effects para hover */
+    --shadow-hover-preview: 0 15px 60px rgba(255, 140, 0, 0.4);
+    --shadow-hover-cta: 0 8px 40px rgba(255, 140, 0, 0.6);
+    --shadow-button-pulse: 0 4px 20px rgba(255, 140, 0, 0.4);
+
+    /* Borders com diferentes opacidades */
+    --border-orange-10: rgba(255, 140, 0, 0.1);
+    --border-orange-20: rgba(255, 140, 0, 0.2);
+    --border-orange-30: rgba(255, 140, 0, 0.3);
+    --border-orange-50: rgba(255, 140, 0, 0.5);
+
+    /* Backgrounds com diferentes opacidades */
+    --bg-orange-02: rgba(255, 140, 0, 0.02);
+    --bg-orange-05: rgba(255, 140, 0, 0.05);
+    --bg-orange-08: rgba(255, 140, 0, 0.08);
+    --bg-orange-10: rgba(255, 140, 0, 0.1);
+    --bg-orange-15: rgba(255, 140, 0, 0.15);
+    --bg-orange-20: rgba(255, 140, 0, 0.2);
+
+    /* Text stroke */
+    --text-stroke-10: 2px rgba(255, 140, 0, 0.1);
+    --text-stroke-20: 2px rgba(255, 140, 0, 0.2);
+
+    /* Shadows específicas para botões e elementos */
+    --shadow-hint-sm: 0 4px 15px rgba(255, 140, 0, 0.3);
+    --shadow-hint-md: 0 6px 25px rgba(255, 140, 0, 0.5);
+    --shadow-hint-lg: 0 6px 30px rgba(255, 140, 0, 0.6);
+    --shadow-customizer-sm: 0 4px 20px rgba(255, 140, 0, 0.4);
+    --shadow-customizer-md: 0 6px 30px rgba(255, 140, 0, 0.6);
+    --shadow-customizer-lg: 0 6px 30px rgba(255, 140, 0, 0.7);
+
+    /* Shadows compostas */
+    --shadow-cta-hover: 0 4px 20px rgba(255, 140, 0, 0.3), 0 0 40px rgba(255, 140, 0, 0.2);
+    --shadow-cta-active: 0 6px 30px rgba(255, 140, 0, 0.5), 0 0 60px rgba(255, 140, 0, 0.4);
+    --shadow-mega: 0 8px 40px rgba(255, 140, 0, 0.6), 0 0 80px rgba(255, 140, 0, 0.5);
+
+    /* Glows e filtros */
+    --glow-light: drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
+    --glow-strong: drop-shadow(0 0 30px rgba(255, 140, 0, 0.8));
+    --glow-mega-1: 0 0 20px rgba(255, 140, 0, 0.8);
+    --glow-mega-2: 0 0 40px rgba(255, 140, 0, 0.6);
+    --glow-mega-3: 0 0 60px rgba(255, 140, 0, 0.4);
 
     /* Transições */
     --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
@@ -73,7 +126,7 @@ body {
 }
 
 .layer-3 {
-    background: radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.02) 0%, transparent 70%);
+    background: var(--gradient-radial-02);
 }
 
 /* ==================== NAVEGAÇÃO MINIMALISTA ==================== */
@@ -89,7 +142,7 @@ body {
     z-index: 1000;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 140, 0, 0.1);
+    border-bottom: 1px solid var(--border-orange-10);
     transition: all 0.4s var(--ease-smooth);
 }
 
@@ -351,7 +404,7 @@ body {
     font-size: 15rem;
     font-weight: 900;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 140, 0, 0.1);
+    -webkit-text-stroke: 2px var(--border-orange-10);
     z-index: -1;
     user-select: none;
 }
@@ -582,7 +635,7 @@ body {
     position: absolute;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255, 140, 0, 0.05) 0%, transparent 70%);
+    background: var(--gradient-radial-05);
     animation: rotate 20s linear infinite;
 }
 
@@ -633,7 +686,7 @@ body {
     font-size: 8rem;
     font-weight: 900;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 140, 0, 0.1);
+    -webkit-text-stroke: 2px var(--border-orange-10);
     position: absolute;
     top: -3rem;
     left: -1rem;
@@ -732,8 +785,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
-    border: 2px dashed rgba(255, 140, 0, 0.3);
+    background: var(--gradient-linear-subtle);
+    border: 2px dashed var(--border-orange-30);
     border-radius: 15px;
     padding: 2rem;
     transition: all 0.4s var(--ease-smooth);
@@ -762,7 +815,7 @@ body {
 }
 
 .project-item:hover .project-preview-placeholder {
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(255, 140, 0, 0.08) 100%);
+    background: var(--gradient-linear-hover);
     border-color: var(--orange);
 }
 
@@ -772,7 +825,7 @@ body {
 }
 
 .project-item:hover .project-preview {
-    box-shadow: 0 15px 60px rgba(255, 140, 0, 0.4);
+    box-shadow: var(--shadow-hover-preview);
 }
 
 .project-item:hover .project-bg {
@@ -878,8 +931,8 @@ body {
 
 .project-tech span {
     padding: 0.5rem 1rem;
-    background: rgba(255, 140, 0, 0.1);
-    border: 1px solid rgba(255, 140, 0, 0.3);
+    background: var(--bg-orange-10);
+    border: 1px solid var(--border-orange-30);
     border-radius: 20px;
     font-size: 0.85rem;
     color: var(--orange);
@@ -977,7 +1030,7 @@ body {
     left: 50%;
     width: 0;
     height: 0;
-    background: radial-gradient(circle, rgba(255, 140, 0, 0.2), transparent);
+    background: var(--gradient-radial-20);
     transform: translate(-50%, -50%);
     transition: all 0.5s var(--ease-smooth);
     border-radius: 50%;
@@ -1088,7 +1141,7 @@ body {
     transition: all 0.4s var(--ease-smooth);
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 4px 10px rgba(255, 107, 0, 0.2));
+    filter: var(--drop-shadow-sm);
 }
 
 .tech-item span {
@@ -1105,8 +1158,8 @@ body {
     transform: translateY(-10px) scale(1.05);
     border-color: var(--orange);
     box-shadow:
-        0 10px 40px rgba(255, 107, 0, 0.3),
-        0 0 20px rgba(255, 140, 0, 0.2);
+        var(--drop-shadow-skills),
+        var(--shadow-orange);
 }
 
 .tech-item:hover::before {
@@ -1117,7 +1170,7 @@ body {
 .tech-item:hover i,
 .tech-item:hover img {
     transform: scale(1.15) rotateY(360deg);
-    filter: drop-shadow(0 8px 20px rgba(255, 107, 0, 0.4));
+    filter: var(--drop-shadow-md);
 }
 
 .tech-item:hover span {
@@ -1129,7 +1182,7 @@ body {
 .footer {
     padding: 3rem 2rem;
     background: var(--black);
-    border-top: 1px solid rgba(255, 140, 0, 0.1);
+    border-top: 1px solid var(--border-orange-10);
     text-align: center;
 }
 
@@ -1613,13 +1666,13 @@ body {
     font-size: 1rem;
     font-weight: 600;
     border-radius: 50px;
-    border: 2px solid rgba(255, 140, 0, 0.5);
+    border: 2px solid var(--orange);
     transition: all 0.4s var(--ease-smooth);
     position: relative;
     overflow: hidden;
     z-index: 1;
-    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.3),
-                0 0 40px rgba(255, 140, 0, 0.2);
+    box-shadow: var(--shadow-button-pulse),
+                var(--shadow-orange);
     animation: ctaPulse 3s ease-in-out infinite;
 }
 
@@ -1798,7 +1851,7 @@ body {
     gap: 1.5rem;
     padding: 2rem;
     background: var(--black-light);
-    border: 1px solid rgba(255, 140, 0, 0.1);
+    border: 1px solid var(--border-orange-10);
     border-radius: 15px;
     transition: all 0.4s var(--ease-smooth);
 }
@@ -1849,7 +1902,7 @@ body {
 .contact-social {
     padding: 2rem;
     background: var(--black-light);
-    border: 1px solid rgba(255, 140, 0, 0.1);
+    border: 1px solid var(--border-orange-10);
     border-radius: 15px;
 }
 
@@ -1899,7 +1952,7 @@ body {
 .contact-form {
     background: var(--black-light);
     padding: 3rem;
-    border: 1px solid rgba(255, 140, 0, 0.1);
+    border: 1px solid var(--border-orange-10);
     border-radius: 20px;
 }
 
@@ -2052,7 +2105,7 @@ body {
     width: 40px;
     height: 40px;
     background: var(--gradient-orange);
-    border: 2px solid rgba(255, 140, 0, 0.5);
+    border: 2px solid var(--border-orange-50);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2060,7 +2113,7 @@ body {
     cursor: pointer;
     z-index: 999;
     transition: all 0.3s var(--ease-smooth);
-    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+    box-shadow: var(--shadow-hint-sm);
     animation: pulseHint 6s ease-in-out infinite;
     flex-shrink: 0;
 }
@@ -2068,17 +2121,17 @@ body {
 @keyframes pulseHint {
     0%, 100% {
         transform: scale(1);
-        box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+        box-shadow: var(--shadow-hint-sm);
     }
     50% {
         transform: scale(1.05);
-        box-shadow: 0 6px 25px rgba(255, 140, 0, 0.5);
+        box-shadow: var(--shadow-hint-md);
     }
 }
 
 .easter-egg-hint:hover {
     transform: scale(1.1) rotate(15deg);
-    box-shadow: 0 6px 30px rgba(255, 140, 0, 0.6);
+    box-shadow: var(--shadow-hint-lg);
     animation: none;
 }
 
@@ -2087,10 +2140,11 @@ body {
 }
 
 .easter-egg-hint svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--white);
+    width: 22px;
+    height: 22px;
+    fill: var(--white);
     flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 /* ==================== EASTER EGG MODAL ====================  */
@@ -2453,39 +2507,41 @@ body {
     width: 50px;
     height: 50px;
     background: var(--gradient-orange);
-    border: 2px solid rgba(255, 140, 0, 0.5);
+    border: 2px solid var(--border-orange-50);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.4s var(--ease-smooth);
-    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+    box-shadow: var(--shadow-customizer-sm);
     animation: colorTogglePulse 3s ease-in-out infinite;
 }
 
 @keyframes colorTogglePulse {
     0%, 100% {
         transform: scale(1);
-        box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+        box-shadow: var(--shadow-customizer-sm);
     }
     50% {
         transform: scale(1.05);
-        box-shadow: 0 6px 30px rgba(255, 140, 0, 0.6);
+        box-shadow: var(--shadow-customizer-md);
     }
 }
 
 .color-customizer-toggle:hover {
     transform: scale(1.1) rotate(180deg);
-    box-shadow: 0 6px 30px rgba(255, 140, 0, 0.7);
+    box-shadow: var(--shadow-customizer-lg);
     animation: none;
 }
 
 .color-customizer-toggle svg {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     stroke: var(--white);
+    fill: var(--white);
     transition: transform 0.4s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .color-customizer-toggle:hover svg {

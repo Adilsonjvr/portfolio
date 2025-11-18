@@ -1061,9 +1061,60 @@ function applyColorTheme(color) {
     root.style.setProperty('--shadow-orange', `0 0 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`);
     root.style.setProperty('--shadow-orange-lg', `0 0 60px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.7)`);
 
+    // Update drop shadows for filters
+    root.style.setProperty('--drop-shadow-sm', `drop-shadow(0 4px 10px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2))`);
+    root.style.setProperty('--drop-shadow-md', `drop-shadow(0 8px 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4))`);
+    root.style.setProperty('--drop-shadow-skills', `0 10px 40px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`);
+
+    // Update shadow effects para hover
+    root.style.setProperty('--shadow-hover-preview', `0 15px 60px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`);
+    root.style.setProperty('--shadow-hover-cta', `0 8px 40px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`);
+    root.style.setProperty('--shadow-button-pulse', `0 4px 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`);
+
+    // Update borders com diferentes opacidades
+    root.style.setProperty('--border-orange-10', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)`);
+    root.style.setProperty('--border-orange-20', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`);
+    root.style.setProperty('--border-orange-30', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`);
+    root.style.setProperty('--border-orange-50', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`);
+
+    // Update backgrounds com diferentes opacidades
+    root.style.setProperty('--bg-orange-02', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.02)`);
+    root.style.setProperty('--bg-orange-05', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.05)`);
+    root.style.setProperty('--bg-orange-08', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.08)`);
+    root.style.setProperty('--bg-orange-10', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)`);
+    root.style.setProperty('--bg-orange-15', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.15)`);
+    root.style.setProperty('--bg-orange-20', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`);
+
+    // Update text strokes
+    root.style.setProperty('--text-stroke-10', `2px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1)`);
+    root.style.setProperty('--text-stroke-20', `2px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`);
+
+    // Update shadows específicas para botões
+    root.style.setProperty('--shadow-hint-sm', `0 4px 15px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`);
+    root.style.setProperty('--shadow-hint-md', `0 6px 25px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`);
+    root.style.setProperty('--shadow-hint-lg', `0 6px 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`);
+    root.style.setProperty('--shadow-customizer-sm', `0 4px 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`);
+    root.style.setProperty('--shadow-customizer-md', `0 6px 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`);
+    root.style.setProperty('--shadow-customizer-lg', `0 6px 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.7)`);
+
+    // Update shadows compostas
+    root.style.setProperty('--shadow-cta-hover', `0 4px 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3), 0 0 40px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`);
+    root.style.setProperty('--shadow-cta-active', `0 6px 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5), 0 0 60px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`);
+    root.style.setProperty('--shadow-mega', `0 8px 40px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6), 0 0 80px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`);
+
     // Update glow effects for animations
     root.style.setProperty('--glow-light', `drop-shadow(0 0 10px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5))`);
     root.style.setProperty('--glow-strong', `drop-shadow(0 0 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8))`);
+    root.style.setProperty('--glow-mega-1', `0 0 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.8)`);
+    root.style.setProperty('--glow-mega-2', `0 0 40px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`);
+    root.style.setProperty('--glow-mega-3', `0 0 60px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`);
+
+    // Update gradientes adicionais
+    root.style.setProperty('--gradient-radial-02', `radial-gradient(circle at 50% 50%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.02) 0%, transparent 70%)`);
+    root.style.setProperty('--gradient-radial-05', `radial-gradient(circle, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.05) 0%, transparent 70%)`);
+    root.style.setProperty('--gradient-radial-20', `radial-gradient(circle, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2), transparent)`);
+    root.style.setProperty('--gradient-linear-subtle', `linear-gradient(135deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1) 0%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.05) 100%)`);
+    root.style.setProperty('--gradient-linear-hover', `linear-gradient(135deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.15) 0%, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.08) 100%)`);
 
     // Update parallax layers
     const layer1 = document.querySelector('.layer-1');
