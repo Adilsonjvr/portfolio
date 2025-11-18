@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectsObserver();
     initCounters();
     initCursor();
+    initMindMap();
 });
 
 // ==================== CANVAS CRIATIVO ====================
@@ -666,6 +667,29 @@ function activateEasterEgg() {
     }, 500);
 }
 
+// ==================== MIND MAP ANIMATION ====================
+function initMindMap() {
+    const mindMapContainer = document.querySelector('.mind-map-container');
+
+    if (!mindMapContainer) return;
+
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(mindMapContainer);
+}
+
 // ==================== INTERNACIONALIZAÇÃO (i18n) ====================
 const translations = {
     pt: {
@@ -693,10 +717,23 @@ const translations = {
             },
             text1: 'Desenvolvedor full stack com paixão por criar experiências digitais únicas e memoráveis.',
             text2: 'Especializado em arquitetar soluções que unem performance, estética e funcionalidade. Cada projeto é uma oportunidade de explorar novos limites do que é possível com código.',
-            stats: {
-                projects: 'Projetos',
-                years: 'Anos',
-                dedication: 'Dedicação'
+            mindmap: {
+                core: {
+                    title: 'Full Stack Dev',
+                    subtitle: 'Código + Produto'
+                },
+                bubble1: {
+                    title: 'Visão de Produto',
+                    text: 'Do problema ao MVP'
+                },
+                bubble2: {
+                    title: 'Arquitetura & Código',
+                    text: 'Clean & Escalável'
+                },
+                bubble3: {
+                    title: 'Entrega & Parceria',
+                    text: 'Deploy contínuo'
+                }
             }
         },
         divider: {
@@ -761,10 +798,23 @@ const translations = {
             },
             text1: 'Full stack developer with a passion for creating unique and memorable digital experiences.',
             text2: 'Specialized in architecting solutions that combine performance, aesthetics, and functionality. Each project is an opportunity to explore new limits of what is possible with code.',
-            stats: {
-                projects: 'Projects',
-                years: 'Years',
-                dedication: 'Dedication'
+            mindmap: {
+                core: {
+                    title: 'Full Stack Dev',
+                    subtitle: 'Code + Product'
+                },
+                bubble1: {
+                    title: 'Product Vision',
+                    text: 'From problem to MVP'
+                },
+                bubble2: {
+                    title: 'Architecture & Code',
+                    text: 'Clean & Scalable'
+                },
+                bubble3: {
+                    title: 'Delivery & Partnership',
+                    text: 'Continuous deploy'
+                }
             }
         },
         divider: {
