@@ -1214,6 +1214,8 @@ body {
 }
 
 /* ==================== MIND MAP ==================== */
+/* Removido - substituído por texto objetivo na seção About */
+/*
 .mind-map-container {
     position: relative;
     width: 100%;
@@ -1230,7 +1232,6 @@ body {
     transform: translateY(0);
 }
 
-/* SVG Lines */
 .mind-map-svg {
     position: absolute;
     top: 0;
@@ -1273,7 +1274,6 @@ body {
     }
 }
 
-/* Core Circle */
 .mind-map-core {
     position: absolute;
     top: 50%;
@@ -1320,7 +1320,6 @@ body {
     opacity: 0.8;
 }
 
-/* Bubbles */
 .mind-map-bubble {
     position: absolute;
     width: 160px;
@@ -1403,7 +1402,6 @@ body {
     opacity: 0.9;
 }
 
-/* Hover Effects */
 .mind-map-bubble:hover {
     transform: translateY(-5px) scale(1.05);
     border-color: var(--orange);
@@ -1420,7 +1418,6 @@ body {
     box-shadow: var(--shadow-orange-lg);
 }
 
-/* Floating Animation */
 .mind-map-container.visible .mind-map-core {
     animation: fadeInScale 0.8s var(--ease-bounce) 0.3s forwards,
                float 6s ease-in-out 2s infinite;
@@ -1458,6 +1455,7 @@ body {
         transform: translateX(-50%) translateY(-15px) scale(1);
     }
 }
+*/
 
 /* ==================== RESPONSIVIDADE ==================== */
 @media (max-width: 1024px) {
@@ -1492,6 +1490,8 @@ body {
     }
 
     /* Mind Map Responsive - Tablet */
+    /* Removido - mind map substituído por texto */
+    /*
     .mind-map-container {
         height: 450px;
         max-width: 700px;
@@ -1514,6 +1514,7 @@ body {
     .bubble-text {
         font-size: 0.8rem;
     }
+    */
 }
 
 @media (max-width: 768px) {
@@ -1570,6 +1571,8 @@ body {
     }
 
     /* Mind Map Responsive - Mobile */
+    /* Removido - mind map substituído por texto */
+    /*
     .mind-map-container {
         height: 600px;
         max-width: 100%;
@@ -1629,10 +1632,10 @@ body {
         font-size: 0.75rem;
     }
 
-    /* Ajustar linhas SVG para mobile */
     .mind-map-line {
         stroke-width: 1.5;
     }
+    */
 }
 
 @media (max-width: 480px) {
@@ -1777,7 +1780,7 @@ body {
 
 .intro-location {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
-    color: var(--gray-dark);
+    color: var(--orange);
     display: flex;
     align-items: center;
     justify-content: center;

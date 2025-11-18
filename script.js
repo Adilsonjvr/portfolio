@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectsObserver();
     initCounters();
     initCursor();
-    initMindMap();
+    // initMindMap(); // Removido - substituído por texto objetivo
 });
 
 // ==================== CANVAS CRIATIVO ====================
@@ -668,6 +668,8 @@ function activateEasterEgg() {
 }
 
 // ==================== MIND MAP ANIMATION ====================
+// Removido - substituído por texto objetivo na seção About
+/*
 function initMindMap() {
     const mindMapContainer = document.querySelector('.mind-map-container');
 
@@ -689,6 +691,7 @@ function initMindMap() {
 
     observer.observe(mindMapContainer);
 }
+*/
 
 // ==================== INTERNACIONALIZAÇÃO (i18n) ====================
 const translations = {
@@ -707,34 +710,16 @@ const translations = {
                 word3: 'EM CÓDIGO'
             },
             role: 'Desenvolvedor FullStack',
-            subtitle: 'Desenvolvedor apaixonado por criar soluções inovadoras.<br>Cada projeto é uma nova oportunidade de evolução.',
+            subtitle: 'Construo aplicações web com React, Next.js, TypeScript e Node.js.<br>Soluções completas do frontend ao backend.',
             cta: 'Vamos trabalhar juntos?',
             explore: 'EXPLORAR'
         },
         about: {
             title: {
-                html: 'Transformando<br><span class="highlight-orange">Visões</span> em<br>Realidade Digital'
+                html: 'Desenvolvedor<br><span class="highlight-orange">Full Stack</span>'
             },
-            text1: 'Desenvolvedor full stack com paixão por criar experiências digitais únicas e memoráveis.',
-            text2: 'Especializado em arquitetar soluções que unem performance, estética e funcionalidade. Cada projeto é uma oportunidade de explorar novos limites do que é possível com código.',
-            mindmap: {
-                core: {
-                    title: 'Full Stack Dev',
-                    subtitle: 'Código + Produto'
-                },
-                bubble1: {
-                    title: 'Visão de Produto',
-                    text: 'Do problema ao MVP'
-                },
-                bubble2: {
-                    title: 'Arquitetura & Código',
-                    text: 'Clean & Escalável'
-                },
-                bubble3: {
-                    title: 'Entrega & Parceria',
-                    text: 'Deploy contínuo'
-                }
-            }
+            text1: 'Desenvolvedor com experiência em criar aplicações web completas, do frontend ao backend. Trabalho com React, Next.js, TypeScript, Node.js e PostgreSQL. Implemento integrações com APIs externas, sistemas de autenticação, dashboards em tempo real e plataformas SaaS.',
+            text2: 'Foco em escrever código limpo, documentado e testável. Utilizo Git para controle de versão, Docker para containerização e deploy contínuo via Vercel. Experiência com banco de dados relacionais (PostgreSQL), ORMs (Prisma), WebSockets, processamento de arquivos e integração de serviços de terceiros (Supabase, AssemblyAI, Binance API).'
         },
         divider: {
             quote: '"Inovação não é sobre ideias, é sobre execução"'
@@ -788,34 +773,16 @@ const translations = {
                 word3: 'INTO CODE'
             },
             role: 'FullStack Developer',
-            subtitle: 'Passionate developer creating innovative solutions.<br>Each project is a new opportunity for growth.',
+            subtitle: 'Building web applications with React, Next.js, TypeScript and Node.js.<br>Complete solutions from frontend to backend.',
             cta: "Let's work together?",
             explore: 'EXPLORE'
         },
         about: {
             title: {
-                html: 'Transforming<br><span class="highlight-orange">Visions</span> into<br>Digital Reality'
+                html: 'Full Stack<br><span class="highlight-orange">Developer</span>'
             },
-            text1: 'Full stack developer with a passion for creating unique and memorable digital experiences.',
-            text2: 'Specialized in architecting solutions that combine performance, aesthetics, and functionality. Each project is an opportunity to explore new limits of what is possible with code.',
-            mindmap: {
-                core: {
-                    title: 'Full Stack Dev',
-                    subtitle: 'Code + Product'
-                },
-                bubble1: {
-                    title: 'Product Vision',
-                    text: 'From problem to MVP'
-                },
-                bubble2: {
-                    title: 'Architecture & Code',
-                    text: 'Clean & Scalable'
-                },
-                bubble3: {
-                    title: 'Delivery & Partnership',
-                    text: 'Continuous deploy'
-                }
-            }
+            text1: 'Developer experienced in building complete web applications, from frontend to backend. Working with React, Next.js, TypeScript, Node.js, and PostgreSQL. Implementing external API integrations, authentication systems, real-time dashboards, and SaaS platforms.',
+            text2: 'Focus on writing clean, documented, and testable code. Using Git for version control, Docker for containerization, and continuous deployment via Vercel. Experience with relational databases (PostgreSQL), ORMs (Prisma), WebSockets, file processing, and third-party service integration (Supabase, AssemblyAI, Binance API).'
         },
         divider: {
             quote: '"Innovation is not about ideas, it\'s about execution"'
