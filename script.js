@@ -863,33 +863,18 @@ setLanguage(currentLang);
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
-// Verificar se voltou após envio bem-sucedido
-if (window.location.hash === '#contact' && document.referrer.includes('formsubmit.co')) {
-    if (formStatus) {
-        formStatus.textContent = '✓ Mensagem enviada com sucesso! Obrigado pelo contato.';
-        formStatus.style.color = 'var(--orange)';
-        formStatus.style.display = 'block';
-        formStatus.style.background = 'rgba(255, 140, 0, 0.1)';
-        formStatus.style.padding = '1rem';
-        formStatus.style.borderRadius = '8px';
-        formStatus.style.marginTop = '1rem';
-
-        // Ocultar mensagem após 8 segundos
-        setTimeout(() => {
-            formStatus.style.opacity = '0';
-            formStatus.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-                formStatus.style.opacity = '1';
-            }, 500);
-        }, 8000);
-    }
-}
-
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        // Desabilitar botão para evitar envios duplicados
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Prevenir envio padrão para usar AJAX
+
         const submitBtn = contactForm.querySelector('.submit-btn');
+        const formData = new FormData(contactForm);
+
+        // Adicionar configurações do FormSubmit via FormData
+        formData.append('_captcha', 'false');
+        formData.append('_template', 'table');
+
+        // Desabilitar botão para evitar envios duplicados
         if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.style.opacity = '0.6';
@@ -905,12 +890,75 @@ if (contactForm) {
             formStatus.style.padding = '1rem';
             formStatus.style.borderRadius = '8px';
             formStatus.style.marginTop = '1rem';
+            formStatus.style.transition = 'all 0.3s ease';
         }
 
-        // O FormSubmit vai lidar com o envio real
-        // Não prevenir o default para permitir o submit normal
+        try {
+            // Enviar via AJAX usando Fetch API
+            const response = await fetch('https://formsubmit.co/adilsonjvr@gmail.com', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-        console.log('📧 Formulário sendo enviado via FormSubmit...');
+            if (response.ok) {
+                // Sucesso!
+                if (formStatus) {
+                    formStatus.textContent = '✓ Mensagem enviada com sucesso! Obrigado pelo contato.';
+                    formStatus.style.color = '#00ff88';
+                    formStatus.style.background = 'rgba(0, 255, 136, 0.1)';
+                }
+
+                // Limpar formulário
+                contactForm.reset();
+
+                // Ocultar mensagem após 8 segundos
+                setTimeout(() => {
+                    if (formStatus) {
+                        formStatus.style.opacity = '0';
+                        setTimeout(() => {
+                            formStatus.style.display = 'none';
+                            formStatus.style.opacity = '1';
+                        }, 500);
+                    }
+                }, 8000);
+
+                console.log('✅ Mensagem enviada com sucesso!');
+            } else {
+                throw new Error('Erro ao enviar mensagem');
+            }
+        } catch (error) {
+            // Erro no envio
+            console.error('❌ Erro ao enviar:', error);
+
+            if (formStatus) {
+                formStatus.textContent = '❌ Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato por email.';
+                formStatus.style.color = '#ff4444';
+                formStatus.style.background = 'rgba(255, 68, 68, 0.1)';
+            }
+
+            // Ocultar mensagem de erro após 10 segundos
+            setTimeout(() => {
+                if (formStatus) {
+                    formStatus.style.opacity = '0';
+                    setTimeout(() => {
+                        formStatus.style.display = 'none';
+                        formStatus.style.opacity = '1';
+                    }, 500);
+                }
+            }, 10000);
+        } finally {
+            // Reabilitar botão após 3 segundos
+            setTimeout(() => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                }
+            }, 3000);
+        }
     });
 }
 

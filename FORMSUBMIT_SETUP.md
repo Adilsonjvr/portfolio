@@ -34,22 +34,32 @@ Após a ativação, você verá uma mensagem de sucesso. A partir deste momento:
 ## 🔧 Configurações Atuais do Formulário
 
 - **Email Destino**: adilsonjvr@gmail.com
+- **Método de Envio**: AJAX (Fetch API) - SEM redirecionamento
 - **CAPTCHA**: Desabilitado (campo honeypot para anti-spam)
 - **Template**: Formato de tabela (mais fácil de ler)
-- **Redirecionamento**: Volta para o portfólio após envio
 - **Anti-Spam**: Campo honeypot invisível
+- **Headers**: Accept: application/json (para resposta JSON)
 
 ## 📝 O Que o Usuário Verá
 
 ### Ao Enviar o Formulário:
 1. Mensagem: "📤 Enviando mensagem..."
 2. Botão desabilitado temporariamente
-3. Redirecionamento para página de confirmação do FormSubmit
-4. Volta automaticamente para o portfólio
+3. **SEM REDIRECIONAMENTO** - Permanece na mesma página
 
-### Ao Retornar:
-- Mensagem de sucesso: "✓ Mensagem enviada com sucesso!"
+### Após Envio Bem-Sucedido:
+- ✅ Mensagem de sucesso: "✓ Mensagem enviada com sucesso!"
+- Mensagem em verde com fundo destacado
+- Formulário é limpo automaticamente
 - A mensagem desaparece após 8 segundos
+- Botão reabilitado após 3 segundos
+
+### Em Caso de Erro:
+- ❌ Mensagem de erro: "Erro ao enviar mensagem. Por favor, tente novamente..."
+- Mensagem em vermelho com fundo destacado
+- Formulário mantém os dados preenchidos
+- A mensagem desaparece após 10 segundos
+- Botão reabilitado após 3 segundos
 
 ## 🔍 Troubleshooting
 
