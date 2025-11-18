@@ -1679,13 +1679,11 @@ body {
 /* Animação de pulse contínua */
 @keyframes ctaPulse {
     0%, 100% {
-        box-shadow: 0 4px 20px rgba(255, 140, 0, 0.3),
-                    0 0 40px rgba(255, 140, 0, 0.2);
+        box-shadow: var(--shadow-cta-hover);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 6px 30px rgba(255, 140, 0, 0.5),
-                    0 0 60px rgba(255, 140, 0, 0.4);
+        box-shadow: var(--shadow-cta-active);
         transform: scale(1.02);
     }
 }
@@ -1734,8 +1732,7 @@ body {
 
 .cta-button:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 8px 40px rgba(255, 140, 0, 0.6),
-                0 0 80px rgba(255, 140, 0, 0.5),
+    box-shadow: var(--shadow-mega),
                 inset 0 0 20px rgba(255, 255, 255, 0.1);
     border-color: var(--orange-light);
     animation: none; /* Para a animação de pulse no hover */
