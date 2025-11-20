@@ -298,14 +298,12 @@ h3,
 }
 
 #creative-canvas {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    /* Behind everything */
-    pointer-events: none;
+    z-index: 1;
 }
 
 .home-container {
@@ -322,24 +320,26 @@ h3,
     line-height: 0.9;
     letter-spacing: -0.05em;
     margin-bottom: 1.5rem;
+    color: var(--white);
 }
 
-.word {
-    display: inline-block;
+.home-title.small-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    /* Smaller size as requested */
     background: var(--gradient-orange);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    position: relative;
-    animation: wordGlow 3s ease-in-out infinite;
+    text-transform: uppercase;
+    /* Optional: makes it look more "header-like" if desired, or remove */
 }
 
-.word:nth-child(2) {
-    animation-delay: 0.3s;
-}
-
-.word:nth-child(3) {
-    animation-delay: 0.6s;
+.intro-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--orange);
+    /* Explicitly orange */
+    margin-bottom: 0.5rem;
 }
 
 @keyframes wordGlow {
@@ -379,80 +379,66 @@ h3,
     }
 }
 
-.home-divider {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 3rem;
-}
-
-.home-divider span {
-    width: 60px;
-    height: 2px;
-    background: var(--gradient-orange);
-    display: inline-block;
-    animation: dividerPulse 2s ease-in-out infinite;
-}
-
-.home-divider span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.home-divider span:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-@keyframes dividerPulse {
-
-    0%,
-    100% {
-        opacity: 0.3;
-        transform: scaleX(0.8);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scaleX(1);
-    }
-}
-
+/* Scroll Hint Enhanced */
 .scroll-hint {
     position: absolute;
-    bottom: 3rem;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    z-index: 20;
+    gap: 15px;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-hint:hover {
+    opacity: 1;
 }
 
 .scroll-hint span {
     font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--gray-dark);
+    letter-spacing: 4px;
+    color: var(--gray);
+    text-transform: uppercase;
     font-weight: 500;
 }
 
 .scroll-line {
     width: 2px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--orange), transparent);
-    animation: scrollMove 2s ease-in-out infinite;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
 }
 
-@keyframes scrollMove {
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent, var(--orange), transparent);
+    animation: scrollDrop 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
 
-    0%,
-    100% {
-        transform: translateY(0);
-        opacity: 1;
+@keyframes scrollDrop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
     }
 
     50% {
-        transform: translateY(20px);
-        opacity: 0.3;
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(250%);
+        opacity: 0;
     }
 }
 
@@ -706,17 +692,12 @@ h3,
     align-items: center;
     justify-content: center;
     position: relative;
-    background: linear-gradient(180deg, var(--black) 0%, var(--black-soft) 50%, var(--black) 100%);
+    background: transparent;
     overflow: hidden;
 }
 
 .parallax-divider::before {
-    content: '';
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: var(--gradient-radial-05);
-    animation: rotate 20s linear infinite;
+    content: none;
 }
 
 @keyframes rotate {
@@ -2791,7 +2772,7 @@ body.hovering .cursor-outline {
 @media (max-width: 768px) {
     .easter-egg-hint {
         /* Posicionar acima do bottom bar + safe area */
-        bottom: max(90px, calc(80px + env(safe-area-inset-bottom)));
+        bottom: 140px;
         right: 15px;
         width: 36px;
         height: 36px;
@@ -3312,5 +3293,35 @@ body.hovering .cursor-outline {
     .color-picker-wrapper input[type="color"] {
         width: 50px;
         height: 50px;
+    }
+}
+
+/* ==================== CUSTOM CURSOR ==================== */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+.custom-cursor.hover {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 140, 0, 0.1);
+    border-color: transparent;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none;
     }
 }

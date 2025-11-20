@@ -7,11 +7,43 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectsObserver();
     initCounters();
     initCursor();
-    initThreeJSScene();
-    initGSAPHero();
+    // initThreeJSScene(); // Removido temporariamente
+    // initGSAPHero(); // Removido temporariamente
     initTypewriter();
-    // initMindMap(); // Removido - substituído por texto objetivo
 });
+
+// ... (rest of the file until initCursor)
+
+// ==================== CURSOR CUSTOMIZADO ====================
+function initCursor() {
+    const cursor = document.createElement('div');
+    cursor.classList.add('custom-cursor');
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+
+    // Hover effect for links and buttons
+    const links = document.querySelectorAll('a, button, .project-item, .tech-item');
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            cursor.classList.add('hover');
+        });
+        link.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hover');
+        });
+    });
+}
 
 // ==================== CANVAS CRIATIVO ====================
 function initCreativeCanvas() {
@@ -396,38 +428,7 @@ function animateCounter(element, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-// Outline follows with delay (trail effect)
-const animateOutline = () => {
-    // Smooth lerp
-    outlineX += (mouseX - outlineX) * 0.15;
-    outlineY += (mouseY - outlineY) * 0.15;
 
-    cursorOutline.style.left = `${outlineX}px`;
-    cursorOutline.style.top = `${outlineY}px`;
-
-    requestAnimationFrame(animateOutline);
-};
-
-animateOutline();
-
-// Magnetic Effect on specific elements
-const magneticElements = document.querySelectorAll('.cta-button, .nav-link, .social-icon, .lang-btn');
-
-magneticElements.forEach(el => {
-    el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-
-        // Move element slightly towards mouse
-        el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-    });
-
-    el.addEventListener('mouseleave', () => {
-        el.style.transform = 'translate(0, 0)';
-    });
-});
-}
 
 
 // ==================== SOCIAL ICONS INTERACTION ====================
@@ -642,15 +643,12 @@ const translations = {
             home: 'Home',
             about: 'Sobre',
             projects: 'Projetos',
+            experience: 'Experiência',
             skills: 'Skills',
             contact: 'Contato'
         },
         home: {
-            title: {
-                word1: 'TRANSFORMANDO',
-                word2: 'IDEIAS',
-                word3: 'EM CÓDIGO'
-            },
+            title: 'Performance & Design Digital',
             role: 'Desenvolvedor FullStack',
             subtitle: 'Construo aplicações web com React, Next.js, TypeScript e Node.js.<br>Soluções completas do frontend ao backend.',
             cta: 'Vamos trabalhar juntos?',
@@ -710,13 +708,16 @@ const translations = {
             contact: 'Contact'
         },
         home: {
-            title: 'Transforming concepts into digital experiences',
-            subtitle: 'Specialist in scalable web applications with a focus on UX and UI.',
+            title: 'Digital Performance & Design',
+            role: 'Full Stack Developer',
+            subtitle: 'Building web applications with React, Next.js, TypeScript and Node.js.<br>Complete solutions from frontend to backend.',
             cta: 'Start Project',
             explore: 'EXPLORE'
         },
         about: {
-            title: 'About Me',
+            title: {
+                html: 'Developer<br><span class="highlight-orange">Full Stack</span>'
+            },
             text1: 'Developer experienced in building complete web applications, from frontend to backend. Working with React, Next.js, TypeScript, Node.js, and PostgreSQL. Implementing external API integrations, authentication systems, real-time dashboards, and SaaS platforms.',
             text2: 'Focus on writing clean, documented, and testable code. Using Git for version control, Docker for containerization, and continuous deployment via Vercel. Experience with relational databases (PostgreSQL), ORMs (Prisma), WebSockets, file processing, and third-party service integration (Supabase, AssemblyAI, Binance API).'
         },
@@ -1246,22 +1247,22 @@ function initTypewriter() {
         const currentRole = roles[roleIndex];
 
         if (isDeleting) {
-            textElement.textContent = currentRole.substring(0, charIndex - 1);
             charIndex--;
-            typeSpeed = 50; // Faster deleting
+            typeSpeed = 50;
         } else {
-            textElement.textContent = currentRole.substring(0, charIndex + 1);
             charIndex++;
-            typeSpeed = 100; // Normal typing
+            typeSpeed = 100;
         }
+
+        textElement.textContent = currentRole.substring(0, charIndex);
 
         if (!isDeleting && charIndex === currentRole.length) {
             isDeleting = true;
-            typeSpeed = 2000; // Pause at end
+            typeSpeed = 2000;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             roleIndex = (roleIndex + 1) % roles.length;
-            typeSpeed = 500; // Pause before typing next
+            typeSpeed = 500;
         }
 
         setTimeout(type, typeSpeed);
