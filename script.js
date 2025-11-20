@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectsObserver();
     initCounters();
     initCursor();
+    initThreeJSScene();
+    initGSAPHero();
+    initTypewriter();
     // initMindMap(); // Removido - substituído por texto objetivo
 });
 
@@ -18,7 +21,7 @@ function initCreativeCanvas() {
     const ctx = canvas.getContext('2d');
     let particles = [];
     let mouse = { x: null, y: null, radius: 150 };
-    let particleColor = { r: 255, g: 140, b: 0 }; // Cor padrão laranja
+    let particleColor = { r: 255, g: 59, b: 0 }; // Audi Neon Orange
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -50,15 +53,22 @@ function initCreativeCanvas() {
             this.y = y;
             this.baseX = x;
             this.baseY = y;
-            this.size = Math.random() * 3 + 1;
+            this.baseSize = Math.random() * 3 + 1; // Base size for pulsing
+            this.size = this.baseSize;
             this.density = Math.random() * 30 + 1;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
+            // Faster movement for "Neon Sparks" feel
+            this.speedX = Math.random() * 1.5 - 0.75;
+            this.speedY = Math.random() * 1.5 - 0.75;
+            // Pulse effect
+            this.pulseAngle = Math.random() * Math.PI * 2;
+            this.pulseSpeed = 0.05 + Math.random() * 0.05;
         }
 
         draw() {
             const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-            gradient.addColorStop(0, `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, 0.8)`);
+            // More intense core
+            gradient.addColorStop(0, `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, 1)`);
+            gradient.addColorStop(0.4, `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, 0.4)`);
             gradient.addColorStop(1, `rgba(${particleColor.r}, ${particleColor.g}, ${particleColor.b}, 0)`);
 
             ctx.fillStyle = gradient;
@@ -68,6 +78,11 @@ function initCreativeCanvas() {
         }
 
         update() {
+            // Pulse animation
+            this.pulseAngle += this.pulseSpeed;
+            this.size = this.baseSize + Math.sin(this.pulseAngle) * 1.5;
+            if (this.size < 0.5) this.size = 0.5; // Prevent negative size
+
             // Movimento base
             this.x += this.speedX;
             this.y += this.speedY;
@@ -381,121 +396,48 @@ function animateCounter(element, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-// ==================== CURSOR CUSTOMIZADO ====================
-function initCursor() {
-    // Criar cursor customizado
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
+// Outline follows with delay (trail effect)
+const animateOutline = () => {
+    // Smooth lerp
+    outlineX += (mouseX - outlineX) * 0.15;
+    outlineY += (mouseY - outlineY) * 0.15;
 
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    document.body.appendChild(cursorDot);
+    cursorOutline.style.left = `${outlineX}px`;
+    cursorOutline.style.top = `${outlineY}px`;
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
+    requestAnimationFrame(animateOutline);
+};
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.left = mouseX + 'px';
-        cursorDot.style.top = mouseY + 'px';
+animateOutline();
+
+// Magnetic Effect on specific elements
+const magneticElements = document.querySelectorAll('.cta-button, .nav-link, .social-icon, .lang-btn');
+
+magneticElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        // Move element slightly towards mouse
+        el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
     });
 
-    function animateCursor() {
-        const distX = mouseX - cursorX;
-        const distY = mouseY - cursorY;
-
-        cursorX += distX * 0.1;
-        cursorY += distY * 0.1;
-
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    // Efeitos hover
-    const hoverElements = document.querySelectorAll('a, button, .project-item');
-
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('cursor-hover');
-            cursorDot.classList.add('cursor-hover');
-        });
-
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('cursor-hover');
-            cursorDot.classList.remove('cursor-hover');
-        });
+    el.addEventListener('mouseleave', () => {
+        el.style.transform = 'translate(0, 0)';
     });
-
-    // Adicionar estilos
-    const style = document.createElement('style');
-    style.textContent = `
-        .custom-cursor {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(255, 140, 0, 0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-            mix-blend-mode: difference;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: #ff8c00;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10001;
-            transform: translate(-50%, -50%);
-            transition: transform 0.2s ease;
-        }
-
-        .custom-cursor.cursor-hover {
-            width: 60px;
-            height: 60px;
-            border-color: #ff8c00;
-        }
-
-        .cursor-dot.cursor-hover {
-            transform: translate(-50%, -50%) scale(1.5);
-        }
-
-        * {
-            cursor: none !important;
-        }
-
-        @media (max-width: 768px) {
-            .custom-cursor,
-            .cursor-dot {
-                display: none;
-            }
-            * {
-                cursor: auto !important;
-            }
-        }
-    `;
-    document.head.appendChild(style);
+});
 }
+
 
 // ==================== SOCIAL ICONS INTERACTION ====================
 document.querySelectorAll('.social-icon').forEach(icon => {
-    icon.addEventListener('mouseenter', function() {
+    icon.addEventListener('mouseenter', function () {
         const platform = this.getAttribute('data-platform');
         this.style.setProperty('--platform-color', getComputedStyle(this).getPropertyValue('--orange'));
     });
 
-    icon.addEventListener('mousemove', function(e) {
+    icon.addEventListener('mousemove', function (e) {
         const rect = this.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -509,7 +451,7 @@ document.querySelectorAll('.social-icon').forEach(icon => {
         this.style.transform = `translateY(-10px) scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
-    icon.addEventListener('mouseleave', function() {
+    icon.addEventListener('mouseleave', function () {
         this.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
     });
 });
@@ -763,24 +705,18 @@ const translations = {
             home: 'Home',
             about: 'About',
             projects: 'Projects',
+            experience: 'Experience',
             skills: 'Skills',
             contact: 'Contact'
         },
         home: {
-            title: {
-                word1: 'TRANSFORMING',
-                word2: 'IDEAS',
-                word3: 'INTO CODE'
-            },
-            role: 'FullStack Developer',
-            subtitle: 'Building web applications with React, Next.js, TypeScript and Node.js.<br>Complete solutions from frontend to backend.',
-            cta: "Let's work together?",
+            title: 'Transforming concepts into digital experiences',
+            subtitle: 'Specialist in scalable web applications with a focus on UX and UI.',
+            cta: 'Start Project',
             explore: 'EXPLORE'
         },
         about: {
-            title: {
-                html: 'Full Stack<br><span class="highlight-orange">Developer</span>'
-            },
+            title: 'About Me',
             text1: 'Developer experienced in building complete web applications, from frontend to backend. Working with React, Next.js, TypeScript, Node.js, and PostgreSQL. Implementing external API integrations, authentication systems, real-time dashboards, and SaaS platforms.',
             text2: 'Focus on writing clean, documented, and testable code. Using Git for version control, Docker for containerization, and continuous deployment via Vercel. Experience with relational databases (PostgreSQL), ORMs (Prisma), WebSockets, file processing, and third-party service integration (Supabase, AssemblyAI, Binance API).'
         },
@@ -881,7 +817,7 @@ const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit', async function (e) {
         e.preventDefault(); // Prevenir envio padrão para usar AJAX
 
         const submitBtn = contactForm.querySelector('.submit-btn');
@@ -1023,7 +959,7 @@ const customColorInput = document.getElementById('custom-color');
 const colorReset = document.getElementById('color-reset');
 
 // Default color
-const DEFAULT_COLOR = '#ff8c00';
+const DEFAULT_COLOR = '#ff3b00';
 
 // Helper function to convert hex to RGB
 function hexToRgb(hex) {
@@ -1289,3 +1225,47 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+// ==================== TYPEWRITER EFFECT ====================
+function initTypewriter() {
+    const textElement = document.querySelector('.typewriter-text');
+    if (!textElement) return;
+
+    const roles = [
+        "Developer Full Stack",
+        "Especialista em React",
+        "Next.js Expert",
+        "Creative Coder"
+    ];
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+
+    function type() {
+        const currentRole = roles[roleIndex];
+
+        if (isDeleting) {
+            textElement.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50; // Faster deleting
+        } else {
+            textElement.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100; // Normal typing
+        }
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            isDeleting = true;
+            typeSpeed = 2000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typeSpeed = 500; // Pause before typing next
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    type();
+}

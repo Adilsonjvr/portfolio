@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Portfólio artístico de desenvolvimento de software">
     <title>Portfólio | Desenvolvedor Criativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <!-- Canvas criativo (Full Page) -->
+    <canvas id="creative-canvas"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
     <!-- Camadas de paralaxe -->
     <div class="parallax-layer layer-1"></div>
     <div class="parallax-layer layer-2"></div>
@@ -43,25 +56,24 @@
     <section id="home" class="home-section">
         <div class="home-container">
             <div class="home-content">
-                <h1 class="home-title">
-                    <span class="word" data-word="TRANSFORMANDO" data-i18n="home.title.word1">TRANSFORMANDO</span>
-                    <span class="word" data-word="IDEIAS" data-i18n="home.title.word2">IDEIAS</span>
-                    <span class="word" data-word="EM CÓDIGO" data-i18n="home.title.word3">EM CÓDIGO</span>
+                <h1 class="home-title small-title">
+                    <span data-i18n="home.title">Transformando conceitos em experiências digitais</span>
                 </h1>
                 <div class="home-intro">
                     <h2 class="intro-name">Adilson Rodrigues</h2>
-                    <p class="intro-role" data-i18n="home.role">Desenvolvedor FullStack</p>
+                    <div class="typewriter-container">
+                        <span class="typewriter-text"></span><span class="typewriter-cursor">|</span>
+                    </div>
                     <p class="intro-location">
                         <span class="location-icon"></span>
                         Fortaleza, Brasil
                     </p>
                 </div>
                 <p class="home-subtitle" data-i18n="home.subtitle">
-                    Construo aplicações web com React, Next.js, TypeScript e Node.js.<br>
-                    Soluções completas do frontend ao backend.
+                    Especialista em aplicações web escaláveis com foco em UX e UI.
                 </p>
                 <a href="#contact" class="cta-button">
-                    <span data-i18n="home.cta">Vamos trabalhar juntos?</span>
+                    <span data-i18n="home.cta">Iniciar Projeto</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
@@ -78,8 +90,6 @@
             <span data-i18n="home.explore">EXPLORAR</span>
             <div class="scroll-line"></div>
         </div>
-        <!-- Canvas criativo -->
-        <canvas id="creative-canvas"></canvas>
     </section>
 
     <!-- About Me - Layout Artístico -->
@@ -94,7 +104,8 @@
                         <div class="frame-corner bl"></div>
                         <div class="frame-corner br"></div>
                         <div class="profile-circle">
-                            <img src="images/perfil.png" alt="Adilson Rodrigues" class="profile-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <img src="images/perfil.png" alt="Adilson Rodrigues" class="profile-image"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                             <div class="profile-fallback" style="display:none;">
                                 <svg viewBox="0 0 200 200" class="profile-svg">
                                     <defs>
@@ -104,9 +115,10 @@
                                             <stop offset="100%" style="stop-color:#ffa500;stop-opacity:1" />
                                         </linearGradient>
                                     </defs>
-                                    <circle cx="100" cy="75" r="30" fill="url(#orangeGrad)"/>
-                                    <path d="M50 150 Q100 120 150 150" fill="url(#orangeGrad)"/>
-                                    <circle cx="100" cy="100" r="70" fill="none" stroke="url(#orangeGrad)" stroke-width="2" opacity="0.3"/>
+                                    <circle cx="100" cy="75" r="30" fill="url(#orangeGrad)" />
+                                    <path d="M50 150 Q100 120 150 150" fill="url(#orangeGrad)" />
+                                    <circle cx="100" cy="100" r="70" fill="none" stroke="url(#orangeGrad)"
+                                        stroke-width="2" opacity="0.3" />
                                 </svg>
                             </div>
                             <div class="profile-border"></div>
@@ -119,9 +131,16 @@
                         <span class="highlight-orange">Full Stack</span>
                     </h2>
                     <div class="about-text">
-                        <p data-i18n="about.text1">Desenvolvedor com experiência em criar aplicações web completas, do frontend ao backend. Trabalho com React, Next.js, TypeScript, Node.js e PostgreSQL. Implemento integrações com APIs externas, sistemas de autenticação, dashboards em tempo real e plataformas SaaS.</p>
+                        <p data-i18n="about.text1">Desenvolvedor com experiência em criar aplicações web completas, do
+                            frontend ao backend. Trabalho com React, Next.js, TypeScript, Node.js e PostgreSQL.
+                            Implemento integrações com APIs externas, sistemas de autenticação, dashboards em tempo real
+                            e plataformas SaaS.</p>
 
-                        <p data-i18n="about.text2">Foco em escrever código limpo, documentado e testável. Utilizo Git para controle de versão, Docker para containerização e deploy contínuo via Vercel. Experiência com banco de dados relacionais (PostgreSQL), ORMs (Prisma), WebSockets, processamento de arquivos e integração de serviços de terceiros (Supabase, AssemblyAI, Binance API).</p>
+                        <p data-i18n="about.text2">Foco em escrever código limpo, documentado e testável. Utilizo Git
+                            para controle de versão, Docker para containerização e deploy contínuo via Vercel.
+                            Experiência com banco de dados relacionais (PostgreSQL), ORMs (Prisma), WebSockets,
+                            processamento de arquivos e integração de serviços de terceiros (Supabase, AssemblyAI,
+                            Binance API).</p>
                     </div>
                 </div>
             </div>
@@ -153,12 +172,15 @@
                         </div>
                         <div class="project-index">01</div>
                         <div class="project-preview">
-                            <iframe src="https://transcribe-app-phi.vercel.app" title="Transcribe App Preview" loading="lazy"></iframe>
+                            <iframe src="https://transcribe-app-phi.vercel.app" title="Transcribe App Preview"
+                                loading="lazy"></iframe>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Transcribe App</h3>
-                        <p class="project-desc">Plataforma moderna de transcrição de áudio com IA que identifica automaticamente speakers em conversas. Transcrição em 6+ idiomas, exports em múltiplos formatos (TXT, JSON, PDF, DOCX) e sincronização multi-dispositivo com Supabase.</p>
+                        <p class="project-desc">Plataforma moderna de transcrição de áudio com IA que identifica
+                            automaticamente speakers em conversas. Transcrição em 6+ idiomas, exports em múltiplos
+                            formatos (TXT, JSON, PDF, DOCX) e sincronização multi-dispositivo com Supabase.</p>
                         <div class="project-tech">
                             <span>React</span>
                             <span>Supabase</span>
@@ -166,18 +188,21 @@
                             <span>Tailwind CSS</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Adilsonjvr/transcribe-app" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://github.com/Adilsonjvr/transcribe-app" target="_blank"
+                                rel="noopener noreferrer" class="project-btn">
                                 <span>Ver Código</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                                 </svg>
                             </a>
-                            <a href="https://transcribe-app-phi.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://transcribe-app-phi.vercel.app" target="_blank" rel="noopener noreferrer"
+                                class="project-btn">
                                 <span>Ver Demo</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                    <polyline points="15 3 21 3 21 9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
                                 </svg>
                             </a>
                         </div>
@@ -193,12 +218,15 @@
                         </div>
                         <div class="project-index">02</div>
                         <div class="project-preview">
-                            <iframe src="https://dashboard-realtime.vercel.app" title="Dashboard Realtime Preview" loading="lazy"></iframe>
+                            <iframe src="https://dashboard-realtime.vercel.app" title="Dashboard Realtime Preview"
+                                loading="lazy"></iframe>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Crypto Dashboard Realtime</h3>
-                        <p class="project-desc">Dashboard interativo de criptomoedas com cotações em tempo real via WebSocket da Binance. Visualização de BTC, ETH, BNB, SOL, ADA e XRP com gráficos dinâmicos, estatísticas globais e auto-reconexão para estabilidade.</p>
+                        <p class="project-desc">Dashboard interativo de criptomoedas com cotações em tempo real via
+                            WebSocket da Binance. Visualização de BTC, ETH, BNB, SOL, ADA e XRP com gráficos dinâmicos,
+                            estatísticas globais e auto-reconexão para estabilidade.</p>
                         <div class="project-tech">
                             <span>React</span>
                             <span>TypeScript</span>
@@ -206,18 +234,21 @@
                             <span>Framer Motion</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Adilsonjvr/dashboard-realtime" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://github.com/Adilsonjvr/dashboard-realtime" target="_blank"
+                                rel="noopener noreferrer" class="project-btn">
                                 <span>Ver Código</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                                 </svg>
                             </a>
-                            <a href="https://dashboard-realtime.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://dashboard-realtime.vercel.app" target="_blank" rel="noopener noreferrer"
+                                class="project-btn">
                                 <span>Ver Demo</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                    <polyline points="15 3 21 3 21 9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
                                 </svg>
                             </a>
                         </div>
@@ -233,12 +264,15 @@
                         </div>
                         <div class="project-index">03</div>
                         <div class="project-preview">
-                            <iframe src="https://landing-innova-mu.vercel.app" title="Landing Innova Preview" loading="lazy"></iframe>
+                            <iframe src="https://landing-innova-mu.vercel.app" title="Landing Innova Preview"
+                                loading="lazy"></iframe>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Landing Innova - B2B Premium</h3>
-                        <p class="project-desc">Landing page premium para a INNOVA com catálogo completo de injetáveis, timeline de onboarding e grelha de formações certificadas para clínicas. Microinterações com GSAP/AOS, formulário de orçamento com feedback otimista e SEO técnico com Schema.org.</p>
+                        <p class="project-desc">Landing page premium para a INNOVA com catálogo completo de injetáveis,
+                            timeline de onboarding e grelha de formações certificadas para clínicas. Microinterações com
+                            GSAP/AOS, formulário de orçamento com feedback otimista e SEO técnico com Schema.org.</p>
                         <div class="project-tech">
                             <span>HTML5</span>
                             <span>Design System CSS</span>
@@ -248,18 +282,21 @@
                             <span>Schema.org</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Adilsonjvr/landing-innova" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://github.com/Adilsonjvr/landing-innova" target="_blank"
+                                rel="noopener noreferrer" class="project-btn">
                                 <span>Ver Código</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                                 </svg>
                             </a>
-                            <a href="https://landing-innova-mu.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://landing-innova-mu.vercel.app" target="_blank" rel="noopener noreferrer"
+                                class="project-btn">
                                 <span>Ver Demo</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                    <polyline points="15 3 21 3 21 9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
                                 </svg>
                             </a>
                         </div>
@@ -275,12 +312,16 @@
                         </div>
                         <div class="project-index">04</div>
                         <div class="project-preview">
-                            <iframe src="https://sneakers-shop-henna.vercel.app" title="Sneakers Shop Preview" loading="lazy"></iframe>
+                            <iframe src="https://sneakers-shop-henna.vercel.app" title="Sneakers Shop Preview"
+                                loading="lazy"></iframe>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Sneakers Shop - E-commerce</h3>
-                        <p class="project-desc">Aplicação moderna de e-commerce para venda de sneakers desenvolvida com Next.js e TypeScript. Interface responsiva com Tailwind CSS, gerenciamento de banco de dados com Prisma ORM e deploy otimizado na Vercel. Sistema completo com catálogo de produtos, carrinho de compras e gestão de pedidos.</p>
+                        <p class="project-desc">Aplicação moderna de e-commerce para venda de sneakers desenvolvida com
+                            Next.js e TypeScript. Interface responsiva com Tailwind CSS, gerenciamento de banco de dados
+                            com Prisma ORM e deploy otimizado na Vercel. Sistema completo com catálogo de produtos,
+                            carrinho de compras e gestão de pedidos.</p>
                         <div class="project-tech">
                             <span>Next.js</span>
                             <span>TypeScript</span>
@@ -288,18 +329,21 @@
                             <span>Prisma</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Adilsonjvr/sneakers-shop" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://github.com/Adilsonjvr/sneakers-shop" target="_blank"
+                                rel="noopener noreferrer" class="project-btn">
                                 <span>Ver Código</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                                 </svg>
                             </a>
-                            <a href="https://sneakers-shop-henna.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://sneakers-shop-henna.vercel.app" target="_blank" rel="noopener noreferrer"
+                                class="project-btn">
                                 <span>Ver Demo</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 4 0 0 1 2-2h6"/>
-                                    <polyline points="15 3 21 3 21 9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 4 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
                                 </svg>
                             </a>
                         </div>
@@ -315,12 +359,16 @@
                         </div>
                         <div class="project-index">05</div>
                         <div class="project-preview">
-                            <iframe src="https://ajvrforms.vercel.app/login" title="Form Builder Preview" loading="lazy"></iframe>
+                            <iframe src="https://ajvrforms.vercel.app/login" title="Form Builder Preview"
+                                loading="lazy"></iframe>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Form Builder - No-Code Platform</h3>
-                        <p class="project-desc">Plataforma no-code de criação de formulários, alternativa moderna ao Typeform/JotForm. Construtor drag-and-drop com múltiplos tipos de campos, autenticação JWT, compartilhamento público via links, dashboard de análise de respostas e exportação em CSV. Sistema completo com validação Zod e state management com SWR.</p>
+                        <p class="project-desc">Plataforma no-code de criação de formulários, alternativa moderna ao
+                            Typeform/JotForm. Construtor drag-and-drop com múltiplos tipos de campos, autenticação JWT,
+                            compartilhamento público via links, dashboard de análise de respostas e exportação em CSV.
+                            Sistema completo com validação Zod e state management com SWR.</p>
                         <div class="project-tech">
                             <span>Next.js 16</span>
                             <span>React 19</span>
@@ -331,18 +379,21 @@
                             <span>Tailwind CSS</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Adilsonjvr/formbuilder" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://github.com/Adilsonjvr/formbuilder" target="_blank"
+                                rel="noopener noreferrer" class="project-btn">
                                 <span>Ver Código</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                                 </svg>
                             </a>
-                            <a href="https://ajvrforms.vercel.app/login" target="_blank" rel="noopener noreferrer" class="project-btn">
+                            <a href="https://ajvrforms.vercel.app/login" target="_blank" rel="noopener noreferrer"
+                                class="project-btn">
                                 <span>Ver Demo</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                    <polyline points="15 3 21 3 21 9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
                                 </svg>
                             </a>
                         </div>
@@ -362,82 +413,98 @@
             <div class="tech-grid">
                 <!-- Frontend -->
                 <div class="tech-item" data-tech="HTML5">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+                        alt="HTML5" />
                     <span>HTML5</span>
                 </div>
 
                 <div class="tech-item" data-tech="CSS3">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+                        alt="CSS3" />
                     <span>CSS3</span>
                 </div>
 
                 <div class="tech-item" data-tech="JavaScript">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+                        alt="JavaScript" />
                     <span>JavaScript</span>
                 </div>
 
                 <div class="tech-item" data-tech="React">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+                        alt="React" />
                     <span>React</span>
                 </div>
 
                 <div class="tech-item" data-tech="Node.js">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
+                        alt="Node.js" />
                     <span>Node.js</span>
                 </div>
 
                 <div class="tech-item" data-tech="TypeScript">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"
+                        alt="TypeScript" />
                     <span>TypeScript</span>
                 </div>
 
                 <div class="tech-item" data-tech="Python">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+                        alt="Python" />
                     <span>Python</span>
                 </div>
 
                 <div class="tech-item" data-tech="Java">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
+                        alt="Java" />
                     <span>Java</span>
                 </div>
 
                 <div class="tech-item" data-tech="Git">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+                        alt="Git" />
                     <span>Git</span>
                 </div>
 
                 <div class="tech-item" data-tech="Docker">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+                        alt="Docker" />
                     <span>Docker</span>
                 </div>
 
                 <div class="tech-item" data-tech="PostgreSQL">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
+                        alt="PostgreSQL" />
                     <span>PostgreSQL</span>
                 </div>
 
                 <div class="tech-item" data-tech="Supabase">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" alt="Supabase" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg"
+                        alt="Supabase" />
                     <span>Supabase</span>
                 </div>
 
                 <div class="tech-item" data-tech="Tailwind CSS">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+                        alt="Tailwind CSS" />
                     <span>Tailwind CSS</span>
                 </div>
 
                 <div class="tech-item" data-tech="Vite">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="Vite" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg"
+                        alt="Vite" />
                     <span>Vite</span>
                 </div>
 
                 <div class="tech-item" data-tech="Chart.js">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/chartjs/chartjs-original.svg" alt="Chart.js" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/chartjs/chartjs-original.svg"
+                        alt="Chart.js" />
                     <span>Chart.js</span>
                 </div>
 
                 <div class="tech-item" data-tech="Framer Motion">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg" alt="Framer Motion" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg"
+                        alt="Framer Motion" />
                     <span>Framer Motion</span>
                 </div>
 
@@ -457,12 +524,14 @@
                 </div>
 
                 <div class="tech-item" data-tech="Next.js">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="Next.js" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
+                        alt="Next.js" />
                     <span>Next.js</span>
                 </div>
 
                 <div class="tech-item" data-tech="Prisma">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg" alt="Prisma" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg"
+                        alt="Prisma" />
                     <span>Prisma ORM</span>
                 </div>
 
@@ -476,7 +545,8 @@
             <div class="section-header">
                 <div class="section-number">04</div>
                 <h2 class="section-title" data-i18n="contact.title">Vamos Trabalhar Juntos</h2>
-                <p class="section-subtitle" data-i18n="contact.subtitle">Tem um projeto em mente? Estou sempre aberto a novas oportunidades e colaborações.</p>
+                <p class="section-subtitle" data-i18n="contact.subtitle">Tem um projeto em mente? Estou sempre aberto a
+                    novas oportunidades e colaborações.</p>
             </div>
 
             <div class="contact-content">
@@ -484,8 +554,8 @@
                     <div class="contact-item">
                         <div class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
                             </svg>
                         </div>
                         <div class="contact-details">
@@ -497,8 +567,8 @@
                     <div class="contact-item">
                         <div class="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
                             </svg>
                         </div>
                         <div class="contact-details">
@@ -510,19 +580,25 @@
                     <div class="contact-social">
                         <h3 data-i18n="contact.social.title">Redes Sociais</h3>
                         <div class="contact-social-links">
-                            <a href="https://github.com/adilsonjvr" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <a href="https://github.com/adilsonjvr" target="_blank" rel="noopener noreferrer"
+                                class="social-link">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                 </svg>
                             </a>
-                            <a href="https://linkedin.com/in/adilsonjvr" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <a href="https://linkedin.com/in/adilsonjvr" target="_blank" rel="noopener noreferrer"
+                                class="social-link">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                    <path
+                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                 </svg>
                             </a>
-                            <a href="https://instagram.com/adilsonjvr" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <a href="https://instagram.com/adilsonjvr" target="_blank" rel="noopener noreferrer"
+                                class="social-link">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                                 </svg>
                             </a>
                         </div>
@@ -577,9 +653,9 @@
             <p class="footer-quote">Fortaleza, Brasil</p>
             <button class="easter-egg-hint" id="easter-egg-hint" aria-label="Easter egg hint">
                 <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                    <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z"/>
-                    <path d="M19 15l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3z"/>
-                    <path d="M5 6l.5 1.5L7 8l-1.5.5L5 10l-.5-1.5L3 8l1.5-.5L5 6z"/>
+                    <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z" />
+                    <path d="M19 15l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3z" />
+                    <path d="M5 6l.5 1.5L7 8l-1.5.5L5 10l-.5-1.5L3 8l1.5-.5L5 6z" />
                 </svg>
             </button>
         </div>
@@ -595,7 +671,8 @@
                 </svg>
             </button>
             <h3 data-i18n="easter.title">🎮 Easter Egg Secreto!</h3>
-            <p data-i18n="easter.hint">Experimente digitar o lendário <strong>Konami Code</strong> para desbloquear uma surpresa especial:</p>
+            <p data-i18n="easter.hint">Experimente digitar o lendário <strong>Konami Code</strong> para desbloquear uma
+                surpresa especial:</p>
             <div class="konami-code">
                 <span class="key">↑</span>
                 <span class="key">↑</span>
@@ -616,26 +693,29 @@
     <aside class="social-sidebar">
         <a href="https://github.com/adilsonjvr" target="_blank" class="sidebar-icon" data-social="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
             </svg>
             <span class="sidebar-label">GitHub</span>
         </a>
         <a href="https://linkedin.com/in/adilsonjvr" target="_blank" class="sidebar-icon" data-social="LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
             </svg>
             <span class="sidebar-label">LinkedIn</span>
         </a>
         <a href="https://instagram.com/adilsonjvr" target="_blank" class="sidebar-icon" data-social="Instagram">
             <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
             </svg>
             <span class="sidebar-label">Instagram</span>
         </a>
         <a href="mailto:adilsonjvr@gmail.com" class="sidebar-icon" data-social="Email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
             </svg>
             <span class="sidebar-label">Adilsonjvr@gmail.com</span>
         </a>
@@ -644,13 +724,14 @@
     <!-- Color Customizer -->
     <div class="color-customizer">
         <button class="color-customizer-toggle" id="color-toggle" aria-label="Customizar cores">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="4" y1="6" x2="20" y2="6"/>
-                <line x1="4" y1="12" x2="20" y2="12"/>
-                <line x1="4" y1="18" x2="20" y2="18"/>
-                <circle cx="8" cy="6" r="2" fill="currentColor"/>
-                <circle cx="16" cy="12" r="2" fill="currentColor"/>
-                <circle cx="12" cy="18" r="2" fill="currentColor"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="4" y1="6" x2="20" y2="6" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="18" x2="20" y2="18" />
+                <circle cx="8" cy="6" r="2" fill="currentColor" />
+                <circle cx="16" cy="12" r="2" fill="currentColor" />
+                <circle cx="12" cy="18" r="2" fill="currentColor" />
             </svg>
         </button>
 
@@ -659,8 +740,8 @@
                 <h3>Personalizar Tema</h3>
                 <button class="color-panel-close" id="color-close" aria-label="Fechar">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"/>
-                        <line x1="6" y1="6" x2="18" y2="18"/>
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
                     </svg>
                 </button>
             </div>
@@ -668,28 +749,36 @@
             <p class="color-panel-description">Escolha sua cor de destaque favorita</p>
 
             <div class="color-palette">
-                <button class="color-option active" data-color="#ff8c00" data-name="Laranja" style="--color: #ff8c00" aria-label="Laranja">
+                <button class="color-option active" data-color="#ff8c00" data-name="Laranja" style="--color: #ff8c00"
+                    aria-label="Laranja">
                     <span class="color-checkmark">✓</span>
                 </button>
-                <button class="color-option" data-color="#0080ff" data-name="Azul" style="--color: #0080ff" aria-label="Azul">
+                <button class="color-option" data-color="#0080ff" data-name="Azul" style="--color: #0080ff"
+                    aria-label="Azul">
                     <span class="color-checkmark">✓</span>
                 </button>
-                <button class="color-option" data-color="#00ff88" data-name="Verde" style="--color: #00ff88" aria-label="Verde">
+                <button class="color-option" data-color="#00ff88" data-name="Verde" style="--color: #00ff88"
+                    aria-label="Verde">
                     <span class="color-checkmark">✓</span>
                 </button>
-                <button class="color-option" data-color="#a855f7" data-name="Roxo" style="--color: #a855f7" aria-label="Roxo">
+                <button class="color-option" data-color="#a855f7" data-name="Roxo" style="--color: #a855f7"
+                    aria-label="Roxo">
                     <span class="color-checkmark">✓</span>
                 </button>
-                <button class="color-option" data-color="#ff0080" data-name="Rosa" style="--color: #ff0080" aria-label="Rosa">
+                <button class="color-option" data-color="#ff0080" data-name="Rosa" style="--color: #ff0080"
+                    aria-label="Rosa">
                     <span class="color-checkmark">✓</span>
                 </button>
-                <button class="color-option" data-color="#ff4444" data-name="Vermelho" style="--color: #ff4444" aria-label="Vermelho">
+                <button class="color-option" data-color="#ff4444" data-name="Vermelho" style="--color: #ff4444"
+                    aria-label="Vermelho">
                     <span class="color-checkmark">✓</span>
                 </button>
-                <button class="color-option" data-color="#00d9ff" data-name="Ciano" style="--color: #00d9ff" aria-label="Ciano">
+                <button class="color-option" data-color="#00d9ff" data-name="Ciano" style="--color: #00d9ff"
+                    aria-label="Ciano">
                     <span class="color-checkmark">✓</span>
                 </button>
-                <button class="color-option" data-color="#ffd700" data-name="Dourado" style="--color: #ffd700" aria-label="Dourado">
+                <button class="color-option" data-color="#ffd700" data-name="Dourado" style="--color: #ffd700"
+                    aria-label="Dourado">
                     <span class="color-checkmark">✓</span>
                 </button>
             </div>
@@ -704,10 +793,10 @@
 
             <button class="color-reset" id="color-reset">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
-                    <path d="M21 3v5h-5"/>
-                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
-                    <path d="M3 21v-5h5"/>
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                    <path d="M3 21v-5h5" />
                 </svg>
                 Resetar para Padrão
             </button>
@@ -716,4 +805,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
